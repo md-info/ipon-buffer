@@ -1,0 +1,11 @@
+# Prototype privacy and security limits
+
+Only synthetic data belongs in this demo. Planning requires transaction and balance analysis scopes. Optional deposits and local AI each have separate scope choices. Scopes expire after the selected 30/90/180 days and can be revoked. Withdrawals require the demo token and explicit action confirmation, but not analysis consent.
+
+The database does not persist raw analysis transactions or user AI text. Confirmed plan fields, mock funds, scopes and derived snapshots are persisted. AI requests/drafts and rate timestamps live in process memory. The local model software may independently log prompts: its configuration has not been reviewed, and this app cannot promise its retention policy. The browser keeps the entered text while the current screen is open. Closing/reloading loses its session token and does not automatically delete server records.
+
+Revocation clears derived snapshots and pending drafts, blocks planning/deposits, and retains the confirmed plan/mock wallet for access. Deletion removes the session, plan, consents, snapshots and replay cache, and invalidates the token. Pseudonymous audit metadata and simulated movement amounts remain. The SHA-256 token hash links retained events within the demo; do not call this anonymisation. A future production retention schedule and lawful basis must be agreed before real data is collected.
+
+Audit entries chain canonical JSON with SHA-256. Altering an entry is detected by verification. A database administrator can rewrite the complete chain, so this is not tamper-proof, externally anchored, or independently audited. Only successful actions are currently logged; rejected requests are not a complete security event trail.
+
+Threats tested include stale/replayed deposits, concurrent confirmations, altered idempotency payloads, cross-session drafts, expiry, revocation during inference, cancelled drafts, unavailable model and invalid amounts. Synthetic fixtures test boundaries, not LLM resistance or security certification. Remaining work: production authentication, authorisation threat model, external audit anchors, TLS deployment, retention enforcement, session cleanup, abuse controls, backups, penetration testing and partner reconciliation. Regulatory and consumer-protection assessment is future expert review, not a compliance finding.

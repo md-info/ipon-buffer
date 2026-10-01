@@ -1,0 +1,21 @@
+{
+  "notice": "SYNTHETIC hand-computed fixture; engine output only, no money moved",
+  "currency": "PHP",
+  "as_of": "2026-09-28",
+  "normal": {
+    "reserve_minor": 176000,
+    "suggestion_minor": 12000,
+    "room_per_day_minor": 3000,
+    "reasons": [
+      "TRANSFER_RECOMMENDED"
+    ]
+  },
+  "added_school_bill": {
+    "reserve_minor": 209000,
+    "suggestion_minor": 0,
+    "shortfall_minor": 9000,
+    "reasons": [
+      "NOT_ENOUGH_SAFE_SURPLUS"
+    ]
+  }
+}

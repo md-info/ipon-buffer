@@ -1,0 +1,8 @@
+# Prototype assumptions, not provider requirements or validated user preferences.
+market_code: PH
+currency: PHP
+minor_unit_exponent: 2
+rounding_step_minor: 500
+min_transfer_minor: 2000
+languages: [en]
+default_language: en

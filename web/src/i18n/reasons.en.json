@@ -1,0 +1,13 @@
+{
+  "INSUFFICIENT_HISTORY": "Review your plan after we have 30 days of history and income on at least three dates.",
+  "PLAN_REQUIRED": "Confirm your essential expenses before reviewing a savings suggestion.",
+  "ESSENTIALS_UNKNOWN": "Add your essential expenses first; missing expenses do not mean spare money.",
+  "INCOME_DATE_PASSED": "Your expected payment date has passed. Review when you expect income next.",
+  "OVERDUE_BILL_REVIEW": "Review the overdue bill before setting more money aside.",
+  "TRANSFER_RECOMMENDED": "Consider setting aside {amount}, leaving an estimated {reserve} for planned essentials through {date}.",
+  "TARGET_REACHED": "You have reached the current final buffer target. You can still access your savings.",
+  "EVENT_CAP_REACHED": "You have used this income event's savings limit. Review again after another payment.",
+  "NOT_ENOUGH_SAFE_SURPLUS": "Keep this income available for essentials. Review the plan after your next payment.",
+  "HIGH_VOLATILITY_SMALLER_STEPS": "Your recent income amounts vary, so the suggestion uses smaller steps.",
+  "GUARDRAIL_FAILED": "The suggestion needs review. No transfer is recommended."
+}

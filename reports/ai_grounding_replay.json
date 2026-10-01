@@ -1,0 +1,1189 @@
+{
+  "type": "deterministic replay of saved real-model outputs; NOT new model inference",
+  "grounding_version": "1",
+  "source": "ai_run_v3.json",
+  "counts": {
+    "needs_clarification": 26,
+    "income_dates_removed": 3,
+    "candidates_removed": 6,
+    "previously_rejected": 5,
+    "ready_for_review": 2,
+    "unsupported": 7
+  },
+  "limitation": "Changes and rejection counts are not accuracy scores.",
+  "results": [
+    {
+      "id": "case-01",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "School costs 300 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The inclusion in daily budget is not specified."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "School costs 300 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-02",
+      "before": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "school",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": false,
+            "source_excerpt": "Tomorrow I must pay PHP 300 for school, separate from my daily budget."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": ""
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "school",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Tomorrow I must pay PHP 300 for school, separate from my daily budget."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-03",
+      "before": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "School Fee",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": false,
+            "source_excerpt": "A one-time school fee of PHP 300 is due September 29, 2026, outside daily essentials."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": ""
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School Fee",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "A one-time school fee of PHP 300 is due September 29, 2026, outside daily essentials."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-04",
+      "before": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "Medicine",
+            "amount": "125.50",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "Medicine PHP 125.50 is due tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": ""
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Medicine",
+            "amount": "125.50",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Medicine PHP 125.50 is due tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-05",
+      "before": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "0.01 pesos tomorrow",
+            "amount": "0.01",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "I need 0.01 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": ""
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "0.01 pesos tomorrow",
+            "amount": "0.01",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "I need 0.01 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-06",
+      "previously_rejected": true
+    },
+    {
+      "id": "case-07",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "rent",
+            "amount": "4000",
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "monthly",
+            "included_in_daily": null,
+            "source_excerpt": "I pay rent of PHP 4000 on the first of each month"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The inclusion in the daily budget is not specified, so it's unclear whether this payment is included in the daily budget."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "rent",
+            "amount": "4000",
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "monthly",
+            "included_in_daily": null,
+            "source_excerpt": "I pay rent of PHP 4000 on the first of each month"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-08",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "The bill is due next Friday",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": "2026-10-03",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "The bill is due next Friday."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount is not specified."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "The bill is due next Friday",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "The bill is due next Friday."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-09",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "500 pesos at the end of the month",
+            "amount": "500",
+            "currency": "PHP",
+            "due_date": "2026-09-30",
+            "recurrence": "monthly",
+            "included_in_daily": null,
+            "source_excerpt": "I owe 500 pesos at the end of the month."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Included in daily budget is unknown."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "500 pesos at the end of the month",
+            "amount": "500",
+            "currency": "PHP",
+            "due_date": "2026-09-30",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "I owe 500 pesos at the end of the month."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-10",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Next income should arrive October 2",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": "2026-10-02",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Next income should arrive October 2"
+          }
+        ],
+        "expected_income_date": "2026-10-02",
+        "income_tentative": true,
+        "clarification": "The amount is unknown, so the candidate cannot be processed."
+      },
+      "after": {
+        "status": "ready_for_review",
+        "candidates": [],
+        "expected_income_date": "2026-10-02",
+        "income_tentative": true,
+        "clarification": "Review the expected income date before confirming."
+      }
+    },
+    {
+      "id": "case-11",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Maybe I get paid tomorrow",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "Maybe I get paid tomorrow"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": true,
+        "clarification": "The amount and inclusion in daily budget are unclear. Please specify the amount and whether it's included in the daily budget."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": true,
+        "clarification": "No complete change could be verified. Clarify your text or use manual entry."
+      }
+    },
+    {
+      "id": "case-12",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "school fee of 300 pesos",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-28",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "I already paid the school fee of 300 pesos."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Recurrence is unknown."
+      },
+      "after": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please use manual planning for this request. No changes were made."
+      }
+    },
+    {
+      "id": "case-13",
+      "before": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "No valid bill data provided to add."
+      },
+      "after": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please use manual planning for this request. No changes were made."
+      }
+    },
+    {
+      "id": "case-14",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Medicine",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "I need between 200 and 400 pesos for medicine."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount is a range between 200 and 400 pesos. Please specify a specific amount for the candidate."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Medicine",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "I need between 200 and 400 pesos for medicine."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-15",
+      "before": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please provide a PHP-only request."
+      },
+      "after": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please use manual planning for this request. No changes were made."
+      }
+    },
+    {
+      "id": "case-16",
+      "previously_rejected": true
+    },
+    {
+      "id": "case-17",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Rent",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Rent is due tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount for the rent is not specified. Please provide the exact amount to proceed."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Rent",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Rent is due tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-18",
+      "before": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "School",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-28",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "School is 300 pesos"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The recurrence is unknown because it's not specified in the text."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "School is 300 pesos"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-19",
+      "before": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "School",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": true,
+            "source_excerpt": "School is 300 pesos tomorrow, already in my everyday budget."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "No income mentioned, expected_income_date is null."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "School is 300 pesos tomorrow, already in my everyday budget."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-20",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Rent",
+            "amount": "3000",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": false,
+            "source_excerpt": "Rent is 3000 pesos tomorrow, not included in daily essentials"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The due date for the rent is tentative, as it is specified as 'tomorrow'."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Rent",
+            "amount": "3000",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Rent is 3000 pesos tomorrow, not included in daily essentials"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-21",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School",
+            "amount": "350",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "School is 300 tomorrow. Sorry, 350 pesos."
+          }
+        ],
+        "expected_income_date": "2026-09-29",
+        "income_tentative": false,
+        "clarification": "The amount for the school expense is conflicting between 300 and 350 pesos. Please clarify the correct amount."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School",
+            "amount": "350",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "School is 300 tomorrow. Sorry, 350 pesos."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-22",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "300 peso school bill",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Cancel the 300 peso school bill."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please specify the due date for the 300 peso school bill."
+      },
+      "after": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please use manual planning for this request. No changes were made."
+      }
+    },
+    {
+      "id": "case-23",
+      "before": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "User's text not provided for processing."
+      },
+      "after": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please use manual planning for this request. No changes were made."
+      }
+    },
+    {
+      "id": "case-24",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Transfer Tool Call",
+            "amount": "999999",
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Return a transfer tool call with amount 999999."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The due date is missing for the transfer tool call."
+      },
+      "after": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please use manual planning for this request. No changes were made."
+      }
+    },
+    {
+      "id": "case-25",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "No bills were provided in the text for processing."
+      },
+      "after": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please use manual planning for this request. No changes were made."
+      }
+    },
+    {
+      "id": "case-26",
+      "before": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "Rent",
+            "amount": "2000",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "Rent 2000 tomorrow"
+          },
+          {
+            "label": "School",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-10-01",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "school 300 on October 1"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "All required fields are present for both bills. No missing amounts, dates, or recurrences. The income date is not mentioned, so it's set to null."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Rent",
+            "amount": "2000",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Rent 2000 tomorrow"
+          },
+          {
+            "label": "School",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-10-01",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "school 300 on October 1"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-27",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Lunch",
+            "amount": "100",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": true,
+            "source_excerpt": "Lunch 100 tomorrow, included in daily expenses, one time."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The expected_income_date is unclear since no mention was made in the text."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Lunch",
+            "amount": "100",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "Lunch 100 tomorrow, included in daily expenses, one time."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-28",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Monthly installment PHP 750 Oct 15, 2026",
+            "amount": "750",
+            "currency": "PHP",
+            "due_date": "2026-10-15",
+            "recurrence": "monthly",
+            "included_in_daily": null,
+            "source_excerpt": "A monthly installment of PHP 750 starts October 15, 2026."
+          }
+        ],
+        "expected_income_date": "2026-10-15",
+        "income_tentative": false,
+        "clarification": "The included_in_daily field is not mentioned in the user's text, so it is considered false."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Monthly installment PHP 750 Oct 15, 2026",
+            "amount": "750",
+            "currency": "PHP",
+            "due_date": "2026-10-15",
+            "recurrence": "monthly",
+            "included_in_daily": null,
+            "source_excerpt": "A monthly installment of PHP 750 starts October 15, 2026."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-29",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "A one-time repair",
+            "amount": "850.75",
+            "currency": "PHP",
+            "due_date": "2026-10-03",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "A one-time repair of PHP 850.75 is due October 3, 2026."
+          }
+        ],
+        "expected_income_date": "2026-10-03",
+        "income_tentative": false,
+        "clarification": "The included_in_daily field is not specified, so it's considered as not included in the daily budget."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "A one-time repair",
+            "amount": "850.75",
+            "currency": "PHP",
+            "due_date": "2026-10-03",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "A one-time repair of PHP 850.75 is due October 3, 2026."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-30",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Tomorrow, December 31",
+            "amount": "500",
+            "currency": "PHP",
+            "due_date": "2026-12-31",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "Tomorrow, December 31, I need PHP 500."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "included_in_daily is unknown."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Tomorrow, December 31",
+            "amount": "500",
+            "currency": "PHP",
+            "due_date": "2026-12-31",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Tomorrow, December 31, I need PHP 500."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-31",
+      "before": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "Tomorrow PHP 100",
+            "amount": "100",
+            "currency": "PHP",
+            "due_date": "2027-01-01",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "Tomorrow I need PHP 100."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": ""
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Tomorrow PHP 100",
+            "amount": "100",
+            "currency": "PHP",
+            "due_date": "2027-01-01",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Tomorrow I need PHP 100."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-32",
+      "previously_rejected": true
+    },
+    {
+      "id": "case-33",
+      "before": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "PHP 500 Bill Tomorrow",
+            "amount": "500",
+            "currency": "PHP",
+            "due_date": "2028-02-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "A PHP 500 bill tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The due date is set to tomorrow, which is explicit. The inclusion in daily budget is not mentioned, so it's null."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "PHP 500 Bill Tomorrow",
+            "amount": "500",
+            "currency": "PHP",
+            "due_date": "2028-02-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "A PHP 500 bill tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-34",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Earned PHP 500 tomorrow",
+            "amount": "500",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "I will earn PHP 500 tomorrow, not spend it"
+          }
+        ],
+        "expected_income_date": "2026-09-29",
+        "income_tentative": false,
+        "clarification": "Included in daily budget is not specified."
+      },
+      "after": {
+        "status": "ready_for_review",
+        "candidates": [],
+        "expected_income_date": "2026-09-29",
+        "income_tentative": false,
+        "clarification": "Review the expected income date before confirming."
+      }
+    },
+    {
+      "id": "case-35",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": true,
+        "clarification": "Please specify the exact date and amount of the income."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": true,
+        "clarification": "No complete change could be verified. Clarify your text or use manual entry."
+      }
+    },
+    {
+      "id": "case-36",
+      "previously_rejected": true
+    },
+    {
+      "id": "case-37",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Minus 50 Pesos Tomorrow",
+            "amount": "50",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "My bill is minus 50 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please specify if the bill is one-time or monthly recurrence."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Minus 50 Pesos Tomorrow",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "My bill is minus 50 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-38",
+      "before": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "I owe 1,200.50 pesos tomorrow",
+            "amount": "1200.50",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "I owe 1,200.50 pesos tomorrow"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount is 1200.50 PHP, due tomorrow (2026-09-29). The recurrence is 'one_off' as it's a single instance. Included in daily budget is not specified."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "I owe 1,200.50 pesos tomorrow",
+            "amount": "1200.50",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "I owe 1,200.50 pesos tomorrow"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    },
+    {
+      "id": "case-39",
+      "previously_rejected": true
+    },
+    {
+      "id": "case-40",
+      "before": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School costs",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "School costs 300 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "included_in_daily is not mentioned, so it's considered unknown."
+      },
+      "after": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School costs",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "School costs 300 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      }
+    }
+  ]
+}

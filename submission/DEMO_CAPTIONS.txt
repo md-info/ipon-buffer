@@ -1,0 +1,23 @@
+Ipon Buffer: an emergency-savings prototype for irregular income. Synthetic data and mock funds only.
+
+Consent is explicit and expires. AI text entry has its own optional consent. Funds remain accessible after revocation.
+
+Review PHP 250 daily essentials, the PHP 600 bill, and October 2 expected income. Confirming the plan enables calculation.
+
+The engine suggests PHP 120 and reserves PHP 1,760 through October 2. Every deposit remains a separate user choice.
+
+Real local AI drafts PHP 300 due tomorrow. Validation clears unsupported guesses; the user must review every remaining field.
+
+Confirmation stays disabled until missing choices are completed. The user selects One time and No for daily-budget inclusion.
+
+Only confirmation changes the plan: the reserve rises to PHP 2,090 and the suggested deposit becomes PHP 0. No transfer occurs.
+
+For the positive example, remove the school bill and restore the original confirmed plan. This is a transparent demo reset.
+
+Confirm one PHP 120 deposit. The real mock ledger updates to PHP 1,880 in the wallet and PHP 620 in the buffer.
+
+Withdraw PHP 600 to the wallet. The buffer becomes PHP 20. The optional PHP 75/week rebuilding estimate schedules no debit.
+
+Paying the emergency is separate: PHP 600 leaves the wallet. Withdrawal alone only moved money between accounts.
+
+Revoke analysis and AI consent. Access remains available. Local AI is experimental; extraction errors and proposed user research are documented.

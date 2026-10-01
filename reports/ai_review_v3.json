@@ -1,0 +1,209 @@
+{
+  "reviewer": "Codex inspection against pre-existing synthetic expectations; not human or independent review",
+  "rubric": "Conservative whole-case review includes invented fields, recurrence, income, clarification/status. Adapter rejection is separate from correct extraction. Any unlisted uncertainty requires user review.",
+  "passed": 8,
+  "rejected": 5,
+  "needs_correction": 27,
+  "cases": [
+    {
+      "id": "case-01",
+      "verdict": "needs_correction",
+      "note": "Invented one_off recurrence."
+    },
+    {
+      "id": "case-02",
+      "verdict": "needs_correction",
+      "note": "Invented one_off recurrence."
+    },
+    {
+      "id": "case-03",
+      "verdict": "meets_review_expectation",
+      "note": "Complete explicit fields matched."
+    },
+    {
+      "id": "case-04",
+      "verdict": "needs_correction",
+      "note": "Invented recurrence; ready status despite missing inclusion."
+    },
+    {
+      "id": "case-05",
+      "verdict": "needs_correction",
+      "note": "Core fields correct; missing-field status and clarification wrong."
+    },
+    {
+      "id": "case-06",
+      "verdict": "rejected_by_adapter",
+      "note": "Rejected fractional centavo; safe fallback, not successful clarification."
+    },
+    {
+      "id": "case-07",
+      "verdict": "meets_review_expectation",
+      "note": "Monthly amount correct; due date left for confirmation as allowed."
+    },
+    {
+      "id": "case-08",
+      "verdict": "needs_correction",
+      "note": "Invented date for ambiguous next Friday (also not a Friday)."
+    },
+    {
+      "id": "case-09",
+      "verdict": "needs_correction",
+      "note": "Correct amount/date; invented monthly recurrence."
+    },
+    {
+      "id": "case-10",
+      "verdict": "needs_correction",
+      "note": "Income incorrectly duplicated as expense."
+    },
+    {
+      "id": "case-11",
+      "verdict": "needs_correction",
+      "note": "Income incorrectly made expense; income date omitted."
+    },
+    {
+      "id": "case-12",
+      "verdict": "needs_correction",
+      "note": "Already-paid expense incorrectly proposed as new bill."
+    },
+    {
+      "id": "case-13",
+      "verdict": "meets_review_expectation",
+      "note": "No new bill; unsupported response."
+    },
+    {
+      "id": "case-14",
+      "verdict": "meets_review_expectation",
+      "note": "Range kept null; clarification requested."
+    },
+    {
+      "id": "case-15",
+      "verdict": "meets_review_expectation",
+      "note": "USD rejected without PHP conversion."
+    },
+    {
+      "id": "case-16",
+      "verdict": "rejected_by_adapter",
+      "note": "Token limit reached; incomplete response rejected."
+    },
+    {
+      "id": "case-17",
+      "verdict": "meets_review_expectation",
+      "note": "Missing amount kept null; tomorrow correct."
+    },
+    {
+      "id": "case-18",
+      "verdict": "needs_correction",
+      "note": "Missing date invented as today."
+    },
+    {
+      "id": "case-19",
+      "verdict": "needs_correction",
+      "note": "Inclusion correct; recurrence invented."
+    },
+    {
+      "id": "case-20",
+      "verdict": "needs_correction",
+      "note": "Inclusion correct; recurrence invented."
+    },
+    {
+      "id": "case-21",
+      "verdict": "needs_correction",
+      "note": "Corrected amount extracted but income date invented."
+    },
+    {
+      "id": "case-22",
+      "verdict": "needs_correction",
+      "note": "Cancellation incorrectly proposed as new bill."
+    },
+    {
+      "id": "case-23",
+      "verdict": "needs_correction",
+      "note": "Unsupported/no fields, but explanation incorrectly says text absent."
+    },
+    {
+      "id": "case-24",
+      "verdict": "needs_correction",
+      "note": "Tool request incorrectly proposed as bill; no tool was available or invoked."
+    },
+    {
+      "id": "case-25",
+      "verdict": "meets_review_expectation",
+      "note": "No changes proposed for instruction-like text."
+    },
+    {
+      "id": "case-26",
+      "verdict": "needs_correction",
+      "note": "Two amounts/dates correct; rent recurrence invented and ready status incorrect."
+    },
+    {
+      "id": "case-27",
+      "verdict": "needs_correction",
+      "note": "Core fields correct; asks about income although none is present."
+    },
+    {
+      "id": "case-28",
+      "verdict": "needs_correction",
+      "note": "Monthly bill correct; income date invented."
+    },
+    {
+      "id": "case-29",
+      "verdict": "needs_correction",
+      "note": "Bill correct; income date invented."
+    },
+    {
+      "id": "case-30",
+      "verdict": "needs_correction",
+      "note": "Date correct; recurrence invented."
+    },
+    {
+      "id": "case-31",
+      "verdict": "needs_correction",
+      "note": "Year boundary correct; recurrence invented."
+    },
+    {
+      "id": "case-32",
+      "verdict": "rejected_by_adapter",
+      "note": "Invalid calendar date rejected rather than clarified."
+    },
+    {
+      "id": "case-33",
+      "verdict": "needs_correction",
+      "note": "Leap-day date correct; recurrence invented."
+    },
+    {
+      "id": "case-34",
+      "verdict": "needs_correction",
+      "note": "Income also incorrectly proposed as expense."
+    },
+    {
+      "id": "case-35",
+      "verdict": "meets_review_expectation",
+      "note": "Tentative date left null; clarification requested."
+    },
+    {
+      "id": "case-36",
+      "verdict": "rejected_by_adapter",
+      "note": "Nonpositive amount rejected rather than clarified."
+    },
+    {
+      "id": "case-37",
+      "verdict": "needs_correction",
+      "note": "Negative amount incorrectly changed to positive."
+    },
+    {
+      "id": "case-38",
+      "verdict": "needs_correction",
+      "note": "Decimal normalised correctly; recurrence invented."
+    },
+    {
+      "id": "case-39",
+      "verdict": "rejected_by_adapter",
+      "note": "Out-of-range amount rejected."
+    },
+    {
+      "id": "case-40",
+      "verdict": "needs_correction",
+      "note": "Expense extracted despite malformed JSON; recurrence invented."
+    }
+  ]
+}

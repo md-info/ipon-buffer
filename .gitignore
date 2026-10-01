@@ -1,0 +1,13 @@
+.venv/
+node_modules/
+web/dist/
+__pycache__/
+.pytest_cache/
+pytest-cache-files-*/
+.ruff_cache/
+.hypothesis/
+.cache/
+.env
+*.db
+*.log
+work/

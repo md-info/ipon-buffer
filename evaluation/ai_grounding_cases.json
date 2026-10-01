@@ -1,0 +1,78 @@
+{
+  "version": "grounding-smoke-1",
+  "type": "new synthetic exploratory cases; not independent validation",
+  "cases": [
+    {
+      "id": "ground-01",
+      "text": "The dentist costs 240 pesos tomorrow.",
+      "reference_date": "2026-11-12",
+      "review_expectation": "240 / Nov13; unknown recurrence; explicit inclusion choice; no income"
+    },
+    {
+      "id": "ground-02",
+      "text": "A one-time bicycle repair costs PHP 675.25 on November 16, 2026.",
+      "reference_date": "2026-11-12",
+      "review_expectation": "675.25 / Nov16 / one_off; inclusion choice; no income"
+    },
+    {
+      "id": "ground-03",
+      "text": "I already paid 875 pesos for electricity.",
+      "reference_date": "2026-11-12",
+      "review_expectation": "no new bill"
+    },
+    {
+      "id": "ground-04",
+      "text": "Cancel the 450 peso clinic bill.",
+      "reference_date": "2026-11-12",
+      "review_expectation": "unsupported; no changes"
+    },
+    {
+      "id": "ground-05",
+      "text": "My salary might arrive tomorrow.",
+      "reference_date": "2026-11-12",
+      "review_expectation": "tentative income date Nov13; no expense"
+    },
+    {
+      "id": "ground-06",
+      "text": "The clinic costs minus 240 pesos tomorrow.",
+      "reference_date": "2026-11-12",
+      "review_expectation": "no positive amount suggestion"
+    },
+    {
+      "id": "ground-07",
+      "text": "Rent is due next Tuesday.",
+      "reference_date": "2026-11-12",
+      "review_expectation": "amount/date null"
+    },
+    {
+      "id": "ground-08",
+      "text": "I owe PHP 870 at the end of this month.",
+      "reference_date": "2028-02-20",
+      "review_expectation": "870 / Feb29; recurrence unknown"
+    },
+    {
+      "id": "ground-09",
+      "text": "The school trip costs 390 pesos.",
+      "reference_date": "2026-11-12",
+      "review_expectation": "date null"
+    },
+    {
+      "id": "ground-10",
+      "text": "Monthly internet costs PHP 950 on November 20, 2026, already in my daily budget.",
+      "reference_date": "2026-11-12",
+      "review_expectation": "950 / Nov20 / monthly; explicit inclusion choice"
+    },
+    {
+      "id": "ground-11",
+      "text": "Tomorrow I need 85 pesos for medicine.",
+      "reference_date": "2026-12-31",
+      "review_expectation": "85 / Jan1 2027; recurrence unknown"
+    },
+    {
+      "id": "ground-12",
+      "text": "I need 45 dollars for a bill tomorrow.",
+      "reference_date": "2026-11-12",
+      "review_expectation": "unsupported; no PHP conversion"
+    }
+  ]
+}

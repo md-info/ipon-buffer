@@ -1,0 +1,1191 @@
+{
+  "model": "qwen3:1.7b",
+  "protocol": "ollama",
+  "prompt_version": "2",
+  "corpus_version": "1",
+  "run_at": "2026-09-30T19:58:57.939575+00:00",
+  "field_accuracy": null,
+  "ambiguity_handling": null,
+  "measured_usage": "Per-case Ollama token counts and nanosecond durations where returned",
+  "limitation": "Schema validity is not extraction accuracy. Review every case.",
+  "results": [
+    {
+      "id": "case-01",
+      "schema_valid": true,
+      "proposal": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "School costs",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "School costs 300 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount is clear, the date is explicit (TOMORROW), and the recurrence is one_off. The inclusion in daily budget is unspecified. No missing fields."
+      },
+      "human_review": null,
+      "latency_seconds": 1.86,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1828886000,
+        "load_duration": 4421600,
+        "prompt_eval_count": 944,
+        "prompt_eval_duration": 422308000,
+        "eval_count": 153,
+        "eval_duration": 1327165000
+      }
+    },
+    {
+      "id": "case-02",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School Payment",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "Tomorrow I must pay PHP 300 for school, separate from my daily budget."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm if the amount is correct and if the payment is indeed separate from the daily budget."
+      },
+      "human_review": null,
+      "latency_seconds": 1.328,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1318116600,
+        "load_duration": 4034900,
+        "prompt_eval_count": 953,
+        "prompt_eval_duration": 19491000,
+        "eval_count": 148,
+        "eval_duration": 1282210000
+      }
+    },
+    {
+      "id": "case-03",
+      "schema_valid": true,
+      "proposal": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "School Fee",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "A one-time school fee of PHP 300 is due September 29, 2026, outside daily essentials."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount is clear, the date is specific, and the recurrence is explicitly 'one_off'. The inclusion in daily budget is unspecified, so it is treated as 'not included'."
+      },
+      "human_review": null,
+      "latency_seconds": 1.594,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1590530500,
+        "load_duration": 3077300,
+        "prompt_eval_count": 963,
+        "prompt_eval_duration": 21553000,
+        "eval_count": 175,
+        "eval_duration": 1552886000
+      }
+    },
+    {
+      "id": "case-04",
+      "schema_valid": true,
+      "proposal": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "Medicine",
+            "amount": "125.50",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "Medicine PHP 125.50 is due tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm if the amount is correct and if the inclusion in the daily budget is intended."
+      },
+      "human_review": null,
+      "latency_seconds": 1.328,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1318699900,
+        "load_duration": 3323100,
+        "prompt_eval_count": 949,
+        "prompt_eval_duration": 20504000,
+        "eval_count": 145,
+        "eval_duration": 1284355000
+      }
+    },
+    {
+      "id": "case-05",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "0.01 pesos",
+            "amount": "0.01",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "I need 0.01 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount is specified as 0.01 pesos, which is equivalent to 1 centavo. However, the date is explicitly set to tomorrow (2026-09-29). The recurrence is set to 'one_off' as it is a single occurrence. The inclusion in daily budget is not specified, so it is considered unknown."
+      },
+      "human_review": null,
+      "latency_seconds": 1.703,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1702578900,
+        "load_duration": 4199300,
+        "prompt_eval_count": 945,
+        "prompt_eval_duration": 20116000,
+        "eval_count": 198,
+        "eval_duration": 1670781000
+      }
+    },
+    {
+      "id": "case-06",
+      "schema_valid": false,
+      "error_type": "ValueError",
+      "error": "Use no more than two decimal places",
+      "human_review": null,
+      "latency_seconds": 1.484,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1483158900,
+        "load_duration": 3757300,
+        "prompt_eval_count": 946,
+        "prompt_eval_duration": 18908000,
+        "eval_count": 169,
+        "eval_duration": 1450362000
+      }
+    },
+    {
+      "id": "case-07",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "rent",
+            "amount": "4000",
+            "currency": "PHP",
+            "due_date": "2026-10-01",
+            "recurrence": "monthly",
+            "included_in_daily": null,
+            "source_excerpt": "I pay rent of PHP 4000 on the first of each month."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm if the due date is set to the first of each month, and whether the inclusion in the daily budget is specified."
+      },
+      "human_review": null,
+      "latency_seconds": 1.391,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1378147700,
+        "load_duration": 3763100,
+        "prompt_eval_count": 952,
+        "prompt_eval_duration": 20508000,
+        "eval_count": 153,
+        "eval_duration": 1343061000
+      }
+    },
+    {
+      "id": "case-08",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Next Friday",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": "2026-10-03",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "The bill is due next Friday."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The due date is specified as 'next Friday', but clarification is needed to determine the exact date. Please provide the exact date or confirm if 'next Friday' refers to the upcoming Friday in the calendar."
+      },
+      "human_review": null,
+      "latency_seconds": 1.375,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1363702200,
+        "load_duration": 3977300,
+        "prompt_eval_count": 942,
+        "prompt_eval_duration": 17013000,
+        "eval_count": 155,
+        "eval_duration": 1328906000
+      }
+    },
+    {
+      "id": "case-09",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Owed Amount",
+            "amount": "500",
+            "currency": "PHP",
+            "due_date": "2026-10-31",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "I owe 500 pesos at the end of the month."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm the due date and recurrence of the debt. Also, clarify if this is a one-time payment or recurring."
+      },
+      "human_review": null,
+      "latency_seconds": 1.344,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1332364200,
+        "load_duration": 4781900,
+        "prompt_eval_count": 949,
+        "prompt_eval_duration": 30443000,
+        "eval_count": 149,
+        "eval_duration": 1285779000
+      }
+    },
+    {
+      "id": "case-10",
+      "schema_valid": false,
+      "error_type": "ValueError",
+      "error": "Invalid amount",
+      "human_review": null,
+      "latency_seconds": 1.265,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1259317600,
+        "load_duration": 3445900,
+        "prompt_eval_count": 943,
+        "prompt_eval_duration": 18719000,
+        "eval_count": 144,
+        "eval_duration": 1227027000
+      }
+    },
+    {
+      "id": "case-11",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [],
+        "expected_income_date": "2026-09-29",
+        "income_tentative": true,
+        "clarification": "Please provide the exact amount and whether it is a one-time payment or recurring."
+      },
+      "human_review": null,
+      "latency_seconds": 0.656,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 635378200,
+        "load_duration": 4722200,
+        "prompt_eval_count": 941,
+        "prompt_eval_duration": 16762000,
+        "eval_count": 67,
+        "eval_duration": 602748000
+      }
+    },
+    {
+      "id": "case-12",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School Fee",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "I already paid the school fee of 300 pesos."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount is clear, but the due date is unknown. Since the payment was made, the status is set to 'needs_clarification' as the due date is not provided."
+      },
+      "human_review": null,
+      "latency_seconds": 1.391,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1384811700,
+        "load_duration": 4682200,
+        "prompt_eval_count": 948,
+        "prompt_eval_duration": 20620000,
+        "eval_count": 151,
+        "eval_duration": 1348872000
+      }
+    },
+    {
+      "id": "case-13",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Do not add rent; it is already paid."
+      },
+      "human_review": null,
+      "latency_seconds": 0.5,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 499101200,
+        "load_duration": 3390700,
+        "prompt_eval_count": 945,
+        "prompt_eval_duration": 17138000,
+        "eval_count": 51,
+        "eval_duration": 466672000
+      }
+    },
+    {
+      "id": "case-14",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Medicine",
+            "amount": "125.50",
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "I need between 200 and 400 pesos for medicine."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please specify the exact amount needed (e.g., 300 pesos) and the date by which the payment should be made."
+      },
+      "human_review": null,
+      "latency_seconds": 1.375,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1343086800,
+        "load_duration": 5079100,
+        "prompt_eval_count": 951,
+        "prompt_eval_duration": 19263000,
+        "eval_count": 147,
+        "eval_duration": 1305640000
+      }
+    },
+    {
+      "id": "case-15",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Bill",
+            "amount": "500",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "My bill is 500 USD tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount is provided as '500' but the currency is specified as 'USD'. The proposal requires PHP-only data. Please clarify if the amount should be converted to PHP or if it's a typo."
+      },
+      "human_review": null,
+      "latency_seconds": 1.453,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1459652600,
+        "load_duration": 4054000,
+        "prompt_eval_count": 945,
+        "prompt_eval_duration": 17506000,
+        "eval_count": 162,
+        "eval_duration": 1426264000
+      }
+    },
+    {
+      "id": "case-16",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "500 pesos",
+            "amount": "500.00",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "I need 500 pesos and 20 dollars tomorrow."
+          },
+          {
+            "label": "20 dollars",
+            "amount": "20.00",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "I need 500 pesos and 20 dollars tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm if the amounts are correct and if the dates are accurate. Also, clarify if these are one-time payments or recurring."
+      },
+      "human_review": null,
+      "latency_seconds": 2.125,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 2099692000,
+        "load_duration": 3923800,
+        "prompt_eval_count": 949,
+        "prompt_eval_duration": 20354000,
+        "eval_count": 239,
+        "eval_duration": 2063838000
+      }
+    },
+    {
+      "id": "case-17",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Rent",
+            "amount": "125.50",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "Rent is due tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm the amount of rent and whether it is included in the daily budget."
+      },
+      "human_review": null,
+      "latency_seconds": 1.203,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1180677200,
+        "load_duration": 3736400,
+        "prompt_eval_count": 940,
+        "prompt_eval_duration": 17503000,
+        "eval_count": 134,
+        "eval_duration": 1149180000
+      }
+    },
+    {
+      "id": "case-18",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "School is 300 pesos."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm if the amount of 300 pesos is for a specific purpose (e.g., tuition, fees, etc.) and if it is included in the daily budget. Also, clarify if the amount is fixed or recurring."
+      },
+      "human_review": null,
+      "latency_seconds": 1.391,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1390241400,
+        "load_duration": 4286000,
+        "prompt_eval_count": 943,
+        "prompt_eval_duration": 20036000,
+        "eval_count": 154,
+        "eval_duration": 1353950000
+      }
+    },
+    {
+      "id": "case-19",
+      "schema_valid": true,
+      "proposal": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "School",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "monthly",
+            "included_in_daily": true,
+            "source_excerpt": "School is 300 pesos tomorrow, already in my everyday budget."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount is clear, the date is explicit, and the recurrence is set to monthly. The inclusion in the daily budget is confirmed."
+      },
+      "human_review": null,
+      "latency_seconds": 1.344,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1346112300,
+        "load_duration": 4830500,
+        "prompt_eval_count": 950,
+        "prompt_eval_duration": 17977000,
+        "eval_count": 150,
+        "eval_duration": 1311436000
+      }
+    },
+    {
+      "id": "case-20",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Rent",
+            "amount": "3000",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "Rent is 3000 pesos tomorrow, not included in daily essentials."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm if the rent amount is fixed or if it is a one-time payment. Also, confirm if it is included in the daily budget or not."
+      },
+      "human_review": null,
+      "latency_seconds": 1.422,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1410646700,
+        "load_duration": 3977500,
+        "prompt_eval_count": 951,
+        "prompt_eval_duration": 21579000,
+        "eval_count": 158,
+        "eval_duration": 1374308000
+      }
+    },
+    {
+      "id": "case-21",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School",
+            "amount": "350",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "School is 300 tomorrow. Sorry, 350 pesos."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount for 'School' is unclear. The user mentioned '350 pesos' but did not specify if this is a one-time payment or recurring. The due date is set to tomorrow (2026-09-29)."
+      },
+      "human_review": null,
+      "latency_seconds": 1.609,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1600557500,
+        "load_duration": 4419100,
+        "prompt_eval_count": 951,
+        "prompt_eval_duration": 18886000,
+        "eval_count": 177,
+        "eval_duration": 1565596000
+      }
+    },
+    {
+      "id": "case-22",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School Bill",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "Cancel the 300 peso school bill."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm if the '300 peso school bill' refers to a specific date or if there are any additional details to consider."
+      },
+      "human_review": null,
+      "latency_seconds": 1.359,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1360849300,
+        "load_duration": 5458200,
+        "prompt_eval_count": 945,
+        "prompt_eval_duration": 19026000,
+        "eval_count": 148,
+        "eval_duration": 1323652000
+      }
+    },
+    {
+      "id": "case-23",
+      "schema_valid": true,
+      "proposal": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The request contains unsupported content and cannot be processed according to the provided rules."
+      },
+      "human_review": null,
+      "latency_seconds": 0.532,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 532405700,
+        "load_duration": 3748600,
+        "prompt_eval_count": 944,
+        "prompt_eval_duration": 23641000,
+        "eval_count": 53,
+        "eval_duration": 492785000
+      }
+    },
+    {
+      "id": "case-24",
+      "schema_valid": true,
+      "proposal": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The request contains an invalid amount (999999) which is greater than the maximum allowed value (1,000,000). Please provide a valid amount in PHP."
+      },
+      "human_review": null,
+      "latency_seconds": 0.75,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 723712400,
+        "load_duration": 4362400,
+        "prompt_eval_count": 950,
+        "prompt_eval_duration": 19211000,
+        "eval_count": 79,
+        "eval_duration": 689999000
+      }
+    },
+    {
+      "id": "case-25",
+      "schema_valid": true,
+      "proposal": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please provide specific bills and their details for processing."
+      },
+      "human_review": null,
+      "latency_seconds": 0.5,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 497223100,
+        "load_duration": 5097800,
+        "prompt_eval_count": 945,
+        "prompt_eval_duration": 18811000,
+        "eval_count": 48,
+        "eval_duration": 461558000
+      }
+    },
+    {
+      "id": "case-26",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Rent",
+            "amount": "2000",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "monthly",
+            "included_in_daily": true,
+            "source_excerpt": "Rent 2000 tomorrow and school 300 on October 1."
+          },
+          {
+            "label": "School",
+            "amount": "300",
+            "currency": "PHP",
+            "due_date": "2026-10-01",
+            "recurrence": "monthly",
+            "included_in_daily": true,
+            "source_excerpt": "Rent 2000 tomorrow and school 300 on October 1."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm if the amounts are correct and if the dates are accurate. Also, clarify if the 'monthly' recurrence applies to both bills or if they are separate."
+      },
+      "human_review": null,
+      "latency_seconds": 2.234,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 2231244100,
+        "load_duration": 3776600,
+        "prompt_eval_count": 953,
+        "prompt_eval_duration": 21704000,
+        "eval_count": 245,
+        "eval_duration": 2194132000
+      }
+    },
+    {
+      "id": "case-27",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Lunch",
+            "amount": "100",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": true,
+            "source_excerpt": "Lunch 100 tomorrow, included in daily expenses, one time."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm if the amount is indeed PHP 100, and if the due date is exactly tomorrow (2026-09-29). Also, confirm if the 'one time' recurrence is accurate."
+      },
+      "human_review": null,
+      "latency_seconds": 1.625,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1603850600,
+        "load_duration": 4443700,
+        "prompt_eval_count": 951,
+        "prompt_eval_duration": 20906000,
+        "eval_count": 173,
+        "eval_duration": 1567088000
+      }
+    },
+    {
+      "id": "case-28",
+      "schema_valid": true,
+      "proposal": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "Monthly Installment",
+            "amount": "750",
+            "currency": "PHP",
+            "due_date": "2026-10-15",
+            "recurrence": "monthly",
+            "included_in_daily": null,
+            "source_excerpt": "A monthly installment of PHP 750 starts October 15, 2026."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm if the income date is expected to be set, and if the 'included_in_daily' field should be marked as true or false."
+      },
+      "human_review": null,
+      "latency_seconds": 1.469,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1459095900,
+        "load_duration": 7173000,
+        "prompt_eval_count": 956,
+        "prompt_eval_duration": 21290000,
+        "eval_count": 160,
+        "eval_duration": 1414821000
+      }
+    },
+    {
+      "id": "case-29",
+      "schema_valid": true,
+      "proposal": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "A one-time repair",
+            "amount": "850.75",
+            "currency": "PHP",
+            "due_date": "2026-10-03",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "A one-time repair of PHP 850.75 is due October 3, 2026."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount is clear, the date is explicit, and the recurrence is explicitly set to 'one_off'. The inclusion in daily budget is unspecified, so it remains null."
+      },
+      "human_review": null,
+      "latency_seconds": 1.656,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1650120100,
+        "load_duration": 3747000,
+        "prompt_eval_count": 960,
+        "prompt_eval_duration": 23231000,
+        "eval_count": 174,
+        "eval_duration": 1611999000
+      }
+    },
+    {
+      "id": "case-30",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "PHP 500",
+            "amount": "500",
+            "currency": "PHP",
+            "due_date": "2026-12-31",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Tomorrow, December 31, I need PHP 500"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm the exact date and amount for the bill. Also, clarify if this is a one-time payment or recurring."
+      },
+      "human_review": null,
+      "latency_seconds": 1.781,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1755140100,
+        "load_duration": 5775700,
+        "prompt_eval_count": 950,
+        "prompt_eval_duration": 238854000,
+        "eval_count": 152,
+        "eval_duration": 1405635000
+      }
+    },
+    {
+      "id": "case-31",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "PHP 100",
+            "amount": "100",
+            "currency": "PHP",
+            "due_date": "2027-01-01",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Tomorrow I need PHP 100"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm if the amount is correct and if the due date should be set to tomorrow. Also, confirm if this is a one-time payment or recurring."
+      },
+      "human_review": null,
+      "latency_seconds": 1.656,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1653525000,
+        "load_duration": 3420100,
+        "prompt_eval_count": 944,
+        "prompt_eval_duration": 226976000,
+        "eval_count": 153,
+        "eval_duration": 1331300000
+      }
+    },
+    {
+      "id": "case-32",
+      "schema_valid": false,
+      "error_type": "ValueError",
+      "error": "day is out of range for month",
+      "human_review": null,
+      "latency_seconds": 1.625,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1614929100,
+        "load_duration": 4291400,
+        "prompt_eval_count": 954,
+        "prompt_eval_duration": 16944000,
+        "eval_count": 164,
+        "eval_duration": 1471532000
+      }
+    },
+    {
+      "id": "case-33",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "PHP 500 bill tomorrow",
+            "amount": "500",
+            "currency": "PHP",
+            "due_date": "2028-02-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "A PHP 500 bill tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please confirm if the bill is one-time or recurring, and whether it is included in the daily budget."
+      },
+      "human_review": null,
+      "latency_seconds": 1.563,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1547736300,
+        "load_duration": 4037500,
+        "prompt_eval_count": 944,
+        "prompt_eval_duration": 217588000,
+        "eval_count": 145,
+        "eval_duration": 1256869000
+      }
+    },
+    {
+      "id": "case-34",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Earnings",
+            "amount": "500",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "I will earn PHP 500 tomorrow, not spend it"
+          }
+        ],
+        "expected_income_date": "2026-09-29",
+        "income_tentative": true,
+        "clarification": "Please confirm if the amount is exact or if it is a range. Also, confirm if the income is included in the daily budget."
+      },
+      "human_review": null,
+      "latency_seconds": 1.578,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1564790800,
+        "load_duration": 4283700,
+        "prompt_eval_count": 949,
+        "prompt_eval_duration": 18023000,
+        "eval_count": 162,
+        "eval_duration": 1426341000
+      }
+    },
+    {
+      "id": "case-35",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": true,
+        "clarification": "Please provide the exact date when your income is expected to arrive, along with any specific details about the amount or nature of the income."
+      },
+      "human_review": null,
+      "latency_seconds": 0.688,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 675302800,
+        "load_duration": 3736600,
+        "prompt_eval_count": 943,
+        "prompt_eval_duration": 18950000,
+        "eval_count": 68,
+        "eval_duration": 640942000
+      }
+    },
+    {
+      "id": "case-36",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Bill",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "My bill is zero pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount is zero pesos, which is not a valid financial value. Please clarify if this is a typo or if the amount should be specified."
+      },
+      "human_review": null,
+      "latency_seconds": 1.296,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1305446500,
+        "load_duration": 4691800,
+        "prompt_eval_count": 942,
+        "prompt_eval_duration": 18801000,
+        "eval_count": 143,
+        "eval_duration": 1271521000
+      }
+    },
+    {
+      "id": "case-37",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Bill",
+            "amount": "50.00",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "My bill is minus 50 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The bill is listed as 'minus 50 pesos tomorrow', which implies it is a one-time expense. The due date is set to tomorrow (2026-09-29). The amount is clearly defined as 50 pesos. No additional details are provided, so the recurrence is considered 'one_off'."
+      },
+      "human_review": null,
+      "latency_seconds": 1.766,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1725486700,
+        "load_duration": 3888000,
+        "prompt_eval_count": 945,
+        "prompt_eval_duration": 17545000,
+        "eval_count": 190,
+        "eval_duration": 1691169000
+      }
+    },
+    {
+      "id": "case-38",
+      "schema_valid": true,
+      "proposal": {
+        "status": "ready_for_review",
+        "candidates": [
+          {
+            "label": "Owed Amount",
+            "amount": "1200.50",
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "I owe 1,200.50 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount is clear, the date is explicit, and the recurrence is one_off. No missing fields."
+      },
+      "human_review": null,
+      "latency_seconds": 1.391,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1381913300,
+        "load_duration": 3546200,
+        "prompt_eval_count": 949,
+        "prompt_eval_duration": 20022000,
+        "eval_count": 150,
+        "eval_duration": 1348002000
+      }
+    },
+    {
+      "id": "case-39",
+      "schema_valid": false,
+      "error_type": "ValueError",
+      "error": "Enter an amount between PHP 0.01 and PHP 1,000,000",
+      "human_review": null,
+      "latency_seconds": 1.578,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1576850400,
+        "load_duration": 4121800,
+        "prompt_eval_count": 948,
+        "prompt_eval_duration": 20660000,
+        "eval_count": 177,
+        "eval_duration": 1542257000
+      }
+    },
+    {
+      "id": "case-40",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School costs",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": "2026-09-29",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "School costs 300 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "The amount is unclear. Please provide the exact amount and confirm if the expense is included in the daily budget."
+      },
+      "human_review": null,
+      "latency_seconds": 1.265,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 1251344000,
+        "load_duration": 4576400,
+        "prompt_eval_count": 954,
+        "prompt_eval_duration": 20281000,
+        "eval_count": 138,
+        "eval_duration": 1215782000
+      }
+    }
+  ]
+}

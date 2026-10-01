@@ -1,0 +1,573 @@
+{
+  "model": "qwen3:1.7b",
+  "protocol": "ollama",
+  "prompt_version": "3",
+  "corpus_version": "grounding-smoke-1",
+  "run_at": "2026-10-01T00:56:41.982751+00:00",
+  "field_accuracy": null,
+  "ambiguity_handling": null,
+  "measured_usage": "Per-case Ollama token counts and nanosecond durations where returned",
+  "limitation": "Schema validity is not extraction accuracy. Review every case.",
+  "results": [
+    {
+      "id": "ground-01",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Dentist",
+            "amount": "240",
+            "currency": "PHP",
+            "due_date": "2026-11-13",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "The dentist costs 240 pesos tomorrow."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      },
+      "human_review": null,
+      "latency_seconds": 11.844,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 11800636300,
+        "load_duration": 6209876000,
+        "prompt_eval_count": 928,
+        "prompt_eval_duration": 453674000,
+        "eval_count": 629,
+        "eval_duration": 5126426000,
+        "grounding_version": "1",
+        "raw_proposal": {
+          "status": "needs_clarification",
+          "candidates": [
+            {
+              "label": "Dentist",
+              "amount": "240",
+              "currency": "PHP",
+              "due_date": "2026-11-13",
+              "recurrence": "unknown",
+              "included_in_daily": null,
+              "source_excerpt": "The dentist costs 240 pesos tomorrow."
+            }
+          ],
+          "expected_income_date": null,
+          "income_tentative": false,
+          "clarification": "The included_in_daily field is not specified, which affects whether this bill is included in the daily budget."
+        }
+      }
+    },
+    {
+      "id": "ground-02",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Bicycle Repair",
+            "amount": "675.25",
+            "currency": "PHP",
+            "due_date": "2026-11-16",
+            "recurrence": "one_off",
+            "included_in_daily": null,
+            "source_excerpt": "A one-time bicycle repair costs PHP 675.25 on November 16, 2026."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      },
+      "human_review": null,
+      "latency_seconds": 4.094,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 4071256600,
+        "load_duration": 3810000,
+        "prompt_eval_count": 944,
+        "prompt_eval_duration": 30013000,
+        "eval_count": 491,
+        "eval_duration": 4028106000,
+        "grounding_version": "1",
+        "raw_proposal": {
+          "status": "needs_clarification",
+          "candidates": [
+            {
+              "label": "Bicycle Repair",
+              "amount": "675.25",
+              "currency": "PHP",
+              "due_date": "2026-11-16",
+              "recurrence": "one_off",
+              "included_in_daily": null,
+              "source_excerpt": "A one-time bicycle repair costs PHP 675.25 on November 16, 2026."
+            }
+          ],
+          "expected_income_date": "2026-11-16",
+          "income_tentative": false,
+          "clarification": "included_in_daily is unknown."
+        }
+      }
+    },
+    {
+      "id": "ground-03",
+      "schema_valid": true,
+      "proposal": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please use manual planning for this request. No changes were made."
+      },
+      "human_review": null,
+      "latency_seconds": 2.906,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 2882531100,
+        "load_duration": 3630100,
+        "prompt_eval_count": 929,
+        "prompt_eval_duration": 16983000,
+        "eval_count": 346,
+        "eval_duration": 2851065000,
+        "grounding_version": "1",
+        "raw_proposal": {
+          "status": "ready_for_review",
+          "candidates": [
+            {
+              "label": "Electricity",
+              "amount": "875",
+              "currency": "PHP",
+              "due_date": "2026-11-12",
+              "recurrence": "one_off",
+              "included_in_daily": false,
+              "source_excerpt": "I already paid 875 pesos for electricity"
+            }
+          ],
+          "expected_income_date": null,
+          "income_tentative": false,
+          "clarification": ""
+        }
+      }
+    },
+    {
+      "id": "ground-04",
+      "schema_valid": true,
+      "proposal": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please use manual planning for this request. No changes were made."
+      },
+      "human_review": null,
+      "latency_seconds": 6.406,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 6402505300,
+        "load_duration": 3165800,
+        "prompt_eval_count": 928,
+        "prompt_eval_duration": 16773000,
+        "eval_count": 758,
+        "eval_duration": 6372052000,
+        "grounding_version": "1",
+        "raw_proposal": {
+          "status": "needs_clarification",
+          "candidates": [
+            {
+              "label": "Clinic Bill",
+              "amount": "450",
+              "currency": "PHP",
+              "due_date": "2026-11-12",
+              "recurrence": "unknown",
+              "included_in_daily": null,
+              "source_excerpt": "Cancel the 450 peso clinic bill."
+            }
+          ],
+          "expected_income_date": null,
+          "income_tentative": false,
+          "clarification": "Please specify the recurrence (monthly, one-off, etc.) for the clinic bill."
+        }
+      }
+    },
+    {
+      "id": "ground-05",
+      "schema_valid": true,
+      "proposal": {
+        "status": "ready_for_review",
+        "candidates": [],
+        "expected_income_date": "2026-11-13",
+        "income_tentative": true,
+        "clarification": "Review the expected income date before confirming."
+      },
+      "human_review": null,
+      "latency_seconds": 3.391,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 3384767900,
+        "load_duration": 3878500,
+        "prompt_eval_count": 924,
+        "prompt_eval_duration": 34629000,
+        "eval_count": 394,
+        "eval_duration": 3335751000,
+        "grounding_version": "1",
+        "raw_proposal": {
+          "status": "needs_clarification",
+          "candidates": [
+            {
+              "label": "salary",
+              "amount": null,
+              "currency": "PHP",
+              "due_date": "2026-11-13",
+              "recurrence": "unknown",
+              "included_in_daily": null,
+              "source_excerpt": "My salary might arrive tomorrow"
+            }
+          ],
+          "expected_income_date": "2026-11-13",
+          "income_tentative": true,
+          "clarification": "The amount and income date are unclear due to the uncertainty of the salary arrival."
+        }
+      }
+    },
+    {
+      "id": "ground-06",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Clinic Costs",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": "2026-11-13",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "The clinic costs minus 240 pesos tomorrow"
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      },
+      "human_review": null,
+      "latency_seconds": 4.516,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 4488960000,
+        "load_duration": 3030000,
+        "prompt_eval_count": 929,
+        "prompt_eval_duration": 17600000,
+        "eval_count": 527,
+        "eval_duration": 4458813000,
+        "grounding_version": "1",
+        "raw_proposal": {
+          "status": "needs_clarification",
+          "candidates": [
+            {
+              "label": "Clinic Costs",
+              "amount": "240",
+              "currency": "PHP",
+              "due_date": "2026-11-13",
+              "recurrence": "unknown",
+              "included_in_daily": null,
+              "source_excerpt": "The clinic costs minus 240 pesos tomorrow"
+            }
+          ],
+          "expected_income_date": null,
+          "income_tentative": false,
+          "clarification": "Included in daily budget is not specified."
+        }
+      }
+    },
+    {
+      "id": "ground-07",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Rent",
+            "amount": null,
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Rent is due next Tuesday."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      },
+      "human_review": null,
+      "latency_seconds": 3.312,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 3301575100,
+        "load_duration": 3858000,
+        "prompt_eval_count": 924,
+        "prompt_eval_duration": 15132000,
+        "eval_count": 386,
+        "eval_duration": 3271167000,
+        "grounding_version": "1",
+        "raw_proposal": {
+          "status": "needs_clarification",
+          "candidates": [
+            {
+              "label": "Rent",
+              "amount": null,
+              "currency": "PHP",
+              "due_date": "2026-11-13",
+              "recurrence": "unknown",
+              "included_in_daily": null,
+              "source_excerpt": "Rent is due next Tuesday."
+            }
+          ],
+          "expected_income_date": null,
+          "income_tentative": false,
+          "clarification": "Amount for Rent is not specified."
+        }
+      }
+    },
+    {
+      "id": "ground-08",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "PHP 870",
+            "amount": "870",
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "I owe PHP 870 at the end of this month."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      },
+      "human_review": null,
+      "latency_seconds": 3.094,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 3084878000,
+        "load_duration": 3685500,
+        "prompt_eval_count": 932,
+        "prompt_eval_duration": 208911000,
+        "eval_count": 332,
+        "eval_duration": 2804033000,
+        "grounding_version": "1",
+        "raw_proposal": {
+          "status": "ready_for_review",
+          "candidates": [
+            {
+              "label": "PHP 870",
+              "amount": "870",
+              "currency": "PHP",
+              "due_date": "2028-02-28",
+              "recurrence": "one_off",
+              "included_in_daily": true,
+              "source_excerpt": "I owe PHP 870 at the end of this month."
+            }
+          ],
+          "expected_income_date": null,
+          "income_tentative": false,
+          "clarification": "All required fields are filled."
+        }
+      }
+    },
+    {
+      "id": "ground-09",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "School Trip",
+            "amount": "390",
+            "currency": "PHP",
+            "due_date": null,
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "The school trip costs 390 pesos."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      },
+      "human_review": null,
+      "latency_seconds": 8.156,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 8124792700,
+        "load_duration": 3149800,
+        "prompt_eval_count": 928,
+        "prompt_eval_duration": 15460000,
+        "eval_count": 924,
+        "eval_duration": 7980709000,
+        "grounding_version": "1",
+        "raw_proposal": {
+          "status": "needs_clarification",
+          "candidates": [
+            {
+              "label": "School Trip",
+              "amount": "390",
+              "currency": "PHP",
+              "due_date": "2026-11-12",
+              "recurrence": "unknown",
+              "included_in_daily": null,
+              "source_excerpt": "The school trip costs 390 pesos."
+            }
+          ],
+          "expected_income_date": null,
+          "income_tentative": false,
+          "clarification": "The due date for the school trip is not specified, but the user mentioned 'future bills.' Please clarify if the due date is in the future or today."
+        }
+      }
+    },
+    {
+      "id": "ground-10",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "Monthly internet costs PHP 950 on Nov 20, 2026",
+            "amount": "950",
+            "currency": "PHP",
+            "due_date": "2026-11-20",
+            "recurrence": "monthly",
+            "included_in_daily": null,
+            "source_excerpt": "Monthly internet costs PHP 950 on November 20, 2026, already in my daily budget."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      },
+      "human_review": null,
+      "latency_seconds": 7.875,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 7843382500,
+        "load_duration": 3506700,
+        "prompt_eval_count": 944,
+        "prompt_eval_duration": 19702000,
+        "eval_count": 875,
+        "eval_duration": 7724791000,
+        "grounding_version": "1",
+        "raw_proposal": {
+          "status": "ready_for_review",
+          "candidates": [
+            {
+              "label": "Monthly internet costs PHP 950 on Nov 20, 2026",
+              "amount": "950",
+              "currency": "PHP",
+              "due_date": "2026-11-20",
+              "recurrence": "monthly",
+              "included_in_daily": true,
+              "source_excerpt": "Monthly internet costs PHP 950 on November 20, 2026, already in my daily budget."
+            }
+          ],
+          "expected_income_date": null,
+          "income_tentative": false,
+          "clarification": ""
+        }
+      }
+    },
+    {
+      "id": "ground-11",
+      "schema_valid": true,
+      "proposal": {
+        "status": "needs_clarification",
+        "candidates": [
+          {
+            "label": "medicine",
+            "amount": "85",
+            "currency": "PHP",
+            "due_date": "2027-01-01",
+            "recurrence": "unknown",
+            "included_in_daily": null,
+            "source_excerpt": "Tomorrow I need 85 pesos for medicine."
+          }
+        ],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Review each bill and choose whether it is already included in everyday essentials. Fill any blank amount or date and choose a recurrence before confirming."
+      },
+      "human_review": null,
+      "latency_seconds": 4.985,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 4982952400,
+        "load_duration": 5657600,
+        "prompt_eval_count": 928,
+        "prompt_eval_duration": 220033000,
+        "eval_count": 543,
+        "eval_duration": 4648806000,
+        "grounding_version": "1",
+        "raw_proposal": {
+          "status": "needs_clarification",
+          "candidates": [
+            {
+              "label": "medicine",
+              "amount": "85",
+              "currency": "PHP",
+              "due_date": "2027-01-01",
+              "recurrence": "one_off",
+              "included_in_daily": null,
+              "source_excerpt": "Tomorrow I need 85 pesos for medicine."
+            }
+          ],
+          "expected_income_date": null,
+          "income_tentative": false,
+          "clarification": "Please confirm if this bill is included in the daily budget."
+        }
+      }
+    },
+    {
+      "id": "ground-12",
+      "schema_valid": true,
+      "proposal": {
+        "status": "unsupported",
+        "candidates": [],
+        "expected_income_date": null,
+        "income_tentative": false,
+        "clarification": "Please use manual planning for this request. No changes were made."
+      },
+      "human_review": null,
+      "latency_seconds": 4.984,
+      "runtime_metrics": {
+        "model": "qwen3:1.7b",
+        "total_duration": 4984269800,
+        "load_duration": 3210500,
+        "prompt_eval_count": 929,
+        "prompt_eval_duration": 14450000,
+        "eval_count": 555,
+        "eval_duration": 4816178000,
+        "grounding_version": "1",
+        "raw_proposal": {
+          "status": "ready_for_review",
+          "candidates": [
+            {
+              "label": "45 dollars",
+              "amount": "45",
+              "currency": "PHP",
+              "due_date": "2026-11-13",
+              "recurrence": "one_off",
+              "included_in_daily": null,
+              "source_excerpt": "I need 45 dollars for a bill tomorrow."
+            }
+          ],
+          "expected_income_date": null,
+          "income_tentative": false,
+          "clarification": ""
+        }
+      }
+    }
+  ]
+}

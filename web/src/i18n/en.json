@@ -1,0 +1,16 @@
+{
+  "brand": "Ipon Buffer",
+  "notice": "Synthetic demo · Mock wallet",
+  "eyebrow": "A little room for what comes next",
+  "heading": "Plan for essentials. Make room for a buffer.",
+  "description": "An emergency-savings prototype for irregular income. First, understand what your money still needs to cover.",
+  "statusLabel": "Local service",
+  "checking": "Connecting…",
+  "ready": "Connected",
+  "unavailable": "Unavailable — start the backend and refresh.",
+  "stage": "Foundation build",
+  "scope": "The financial engine is being verified. Plan entry and simulated transfers are not available in this foundation screen.",
+  "assistant": "AI assistant: not connected",
+  "assistantNote": "Planned: describe an expense, review the details, then confirm. AI will never move money.",
+  "footer": "Illustrative prototype. No real funds or personal data."
+}
