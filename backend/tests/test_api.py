@@ -93,6 +93,42 @@ def test_complete_flow_and_accounting(client):
     assert client.get("/api/v1/audit", headers=headers).json()["verified"]
 
 
+@pytest.mark.parametrize(
+    "daily,deposit,reserve,wallet_after",
+    [(25_000, 12_000, 176_000, "PHP 1,880.00"), (27_500, 6500, 187_000, "PHP 1,935.00")],
+)
+def test_explanation_distinguishes_wallet_after_deposit_from_reserve(
+    client, daily, deposit, reserve, wallet_after
+):
+    headers = begin(client)
+    plan = client.get("/api/v1/summary", headers=headers).json()["plan"]
+    plan["routine_daily_minor"] = daily
+    response = client.put("/api/v1/plan", headers=headers, json=plan)
+    assert response.status_code == 200
+    summary = response.json()
+    assert summary["amount_minor"] == deposit
+    assert summary["reserve_minor"] == reserve
+    assert (
+        f"This would leave {wallet_after} in your wallet, including an estimated"
+        in summary["reasons"][0]
+    )
+    # A suggestion and its explanation must not move money.
+    assert summary["available_minor"] == 200_000
+    assert summary["buffer_minor"] == 50_000
+
+
+def test_scenario_basis_and_fraction_match_expenses(client):
+    headers = begin(client)
+    summary = client.get("/api/v1/summary", headers=headers).json()
+    coverage = summary["coverage"]
+    assert coverage["monthly_essentials_minor"] == 750_000
+    assert coverage["scenarios"] == [
+        {"amount_minor": 187_500, "covered": False, "month_fraction": "1/4"},
+        {"amount_minor": 375_000, "covered": False, "month_fraction": "1/2"},
+        {"amount_minor": 750_000, "covered": False, "month_fraction": "1"},
+    ]
+
+
 def test_consent_gate_and_revoke_withdraw(client):
     headers = begin(client, consent=False, confirm=False)
     assert client.get("/api/v1/summary", headers=headers).status_code == 403

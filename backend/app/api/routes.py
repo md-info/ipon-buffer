@@ -209,13 +209,18 @@ def create_app(database_url="sqlite:///ipon-demo.db", adapter=None):
             "buffer_days": float(rec.buffer_days) if rec.buffer_days is not None else None,
             "stage": asdict(rec.stage) if rec.stage else None,
             "eta_days": rec.eta_days,
-            "reasons": explain(rec, market, "en", templates),
+            "reasons": explain(rec, market, "en", templates, available_minor=state["available"]),
             "guardrails": [asdict(check) for check in rec.guardrail_results],
             "coverage": {
+                "monthly_essentials_minor": rec.monthly_essentials_minor,
                 "covered": coverage.covered,
                 "total": coverage.total,
                 "scenarios": [
-                    {"amount_minor": item.amount_minor, "covered": item.covered}
+                    {
+                        "amount_minor": item.amount_minor,
+                        "covered": item.covered,
+                        "month_fraction": str(item.multiple),
+                    }
                     for item in coverage.scenarios
                 ],
             },

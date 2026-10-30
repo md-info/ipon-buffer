@@ -132,7 +132,16 @@ export default function App() {
           <div className="stack"><section className="card stat"><p>{c.wallet}</p><strong>{money(wallet.available_minor)}</strong></section><section className="card stat"><p>{c.reserve}</p><strong>{money(data.reserve_minor)}</strong><small>{c.through} {data.protected_through}</small></section></div></div>
           <section className="saving-card"><div><p className="eyebrow">{c.suggestion}</p><strong>{money(data.amount_minor)}</strong><p>{data.amount_minor ? c.suggestionNote : c.noSurplus}</p></div><button className="primary" onClick={() => move('transfer')} disabled={busy || !data.amount_minor || !choices[2]}>{busy ? c.busy : c.confirmDeposit}</button></section>
           <div className="two-col"><section className="card"><h2>{c.why}</h2>{data.reasons.map(reason => <p key={reason}>{reason}</p>)}<details><summary>{c.review}</summary>{data.guardrails.map(check => <p className="fine" key={check.name}>{check.passed ? '✓' : '×'} {check.detail}</p>)}</details></section><section className="card"><h2>{c.room}</h2><strong className="medium-money">{data.room_per_day_minor === null ? c.unavailable : money(data.room_per_day_minor)}</strong><p className="fine">{c.roomNote}</p></section></div>
-          <section className="card scenarios"><h2>{c.scenarios}</h2><p className="fine">{c.scenariosNote}</p><div className="scenario-row">{data.coverage.scenarios.map(s => <div key={s.amount_minor}><strong>{money(s.amount_minor)}</strong><span>{s.covered ? c.covered : c.notCovered}</span></div>)}</div></section>
+          <section className="card scenarios">
+            <h2>{c.scenarios}</h2>
+            <p className="fine">{c.scenariosNote}</p>
+            <p>{c.scenarioBasis}: <strong>{money(data.coverage.monthly_essentials_minor)}</strong><br />{c.scenarioBuffer}: <strong>{money(wallet.buffer_minor)}</strong></p>
+            <div className="scenario-row">{data.coverage.scenarios.map(s => <div key={s.month_fraction}>
+              <span>{c.scenarioFraction.replace('{fraction}', s.month_fraction)}</span>
+              <strong>{money(s.amount_minor)}</strong>
+              <span>{s.covered ? c.covered : c.notCovered}</span>
+            </div>)}</div>
+          </section>
         </> : <section className="card"><p>{c.consentRequired}</p><button onClick={() => setPhase('consent')}>{c.editConsent}</button></section>)}
 
         {tab === 'plan' && (plan ? <><p className="lead compact">{c.planIntro}</p><section className="assistant-card"><div><span className="ai-tag">AI</span><h2>{c.assistantTitle}</h2><p>{c.assistantIntro}</p></div><p className="fine">{modelMode === 'disabled' ? c.aiOff : c.aiOn}</p>{!choices[3] && <p className="fine">{c.aiConsentNeeded}</p>}

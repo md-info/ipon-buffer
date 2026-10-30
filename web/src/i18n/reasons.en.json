@@ -4,7 +4,7 @@
   "ESSENTIALS_UNKNOWN": "Add your essential expenses first; missing expenses do not mean spare money.",
   "INCOME_DATE_PASSED": "Your expected payment date has passed. Review when you expect income next.",
   "OVERDUE_BILL_REVIEW": "Review the overdue bill before setting more money aside.",
-  "TRANSFER_RECOMMENDED": "Consider setting aside {amount}, leaving an estimated {reserve} for planned essentials through {date}.",
+  "TRANSFER_RECOMMENDED": "Consider setting aside {amount}. This would leave {wallet_after} in your wallet, including an estimated {reserve} needed for planned essentials through {date}.",
   "TARGET_REACHED": "You have reached the current final buffer target. You can still access your savings.",
   "EVENT_CAP_REACHED": "You have used this income event's savings limit. Review again after another payment.",
   "NOT_ENOUGH_SAFE_SURPLUS": "Keep this income available for essentials. Review the plan after your next payment.",

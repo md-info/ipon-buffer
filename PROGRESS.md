@@ -23,3 +23,9 @@ Added source checks, explicit budget-inclusion choice and disabled confirmation 
 ## Final handoff — September 30, 2026
 
 User requested completion and asked to leave applicant details blank. Prototype development and local submission preparation are closed for this scope. Added HANDOFF.md and submission/SUBMISSION_DRAFT.md; updated checklist and live public portal provenance. Published deadline is October 2; exact cutoff and authenticated form rules remain unverified. Remaining applicant actions are identity/slide 10, portal checks, delivery and submission. Further AI reliability and product validation work are future development, not claimed complete. No submission or publication occurred. This final change is documentation only; prior passing checks remain the latest code validation.
+
+## Product clarity corrections — October 30, 2026
+
+User identified ambiguous wallet/reserve wording and unexplained scenario amounts. Savings explanations now state the wallet balance after the proposed deposit separately from the estimated essentials reserve. Scenario cards show the monthly-essentials basis, current buffer, configured month fraction, and buffer-only coverage; amounts remain hypothetical. No financial recommendation or transfer rules changed.
+
+Fresh verification: 151 backend tests and 4 frontend tests passed; Ruff lint/format, TypeScript and Vite build passed. Three new API regression cases cover distinct remaining-wallet/reserve amounts and scenario metadata. Actual browser verification reproduced the user's example: PHP 65 suggestion, PHP 1,935 remaining wallet, PHP 1,870 reserve; PHP 8,200 monthly essentials and PHP 2,050 / 4,100 / 8,200 scenarios against a PHP 500 buffer. Local demo left running in manual mode. Earlier AI quality reports were not rerun. One existing upstream Starlette/AnyIO deprecation warning remains.

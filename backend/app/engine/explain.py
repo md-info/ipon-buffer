@@ -17,7 +17,12 @@ def format_money(amount_minor: int, market: Market) -> str:
 
 
 def explain(
-    rec: Recommendation, market: Market, language: str, templates: Mapping[str, str]
+    rec: Recommendation,
+    market: Market,
+    language: str,
+    templates: Mapping[str, str],
+    *,
+    available_minor: int,
 ) -> tuple[str, ...]:
     if language not in market.languages:
         raise ValueError("Language is not enabled in the market")
@@ -26,6 +31,7 @@ def explain(
     fields = {
         "amount": format_money(rec.amount_minor, market),
         "reserve": format_money(rec.reserve_minor, market),
+        "wallet_after": format_money(available_minor - rec.amount_minor, market),
         "date": rec.protected_through.isoformat(),
     }
     return tuple(templates[code].format_map(fields) for code in rec.reason_codes[:3])

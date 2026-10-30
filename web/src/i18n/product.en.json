@@ -17,7 +17,7 @@
   "reserve": "Protected for essentials", "through": "Through", "room": "Estimated extra room per day",
   "roomNote": "Beyond planned essentials, using your current assumptions.", "unavailable": "Not available yet",
   "suggestion": "Suggested amount to set aside", "suggestionNote": "A choice, never an automatic debit.", "confirmDeposit": "Confirm deposit", "noSurplus": "Keep this money available for essentials.",
-  "why": "Why this amount?", "scenarios": "Illustrative scenario check", "scenariosNote": "Assumed expenses, not typical emergencies or probabilities.", "covered": "Covered", "notCovered": "Not covered",
+  "why": "Why this amount?", "scenarios": "What could your emergency buffer cover?", "scenariosNote": "Hypothetical expenses based on your estimated monthly essentials. Compared with your emergency buffer only; wallet money is not included. These are not predicted bills or probabilities.", "scenarioBasis": "Estimated monthly essentials", "scenarioBuffer": "Emergency buffer available", "scenarioFraction": "{fraction} × monthly essentials", "covered": "Covered by buffer", "notCovered": "Not covered by buffer",
   "planTitle": "What does your money need to cover?", "planIntro": "Review the assumptions. An omitted bill can change the suggestion.",
   "daily": "Everyday essentials (PHP per day)", "nextIncome": "Next expected income", "bills": "Upcoming bills", "addBill": "Add a bill", "label": "Description", "amount": "Amount (PHP)", "due": "Due date",
   "recurrence": "Repeats", "once": "One time", "monthly": "Monthly", "included": "Already included in everyday essentials", "paid": "Already paid", "remove": "Remove",

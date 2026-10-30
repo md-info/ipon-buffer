@@ -25,3 +25,7 @@ Approved Ollama/model installation completed. Initial thinking-disabled prompts 
 ## Conservative validation follow-up
 
 Use the installed model; no additional dependency/download. Add deterministic removal/clearing checks around model output instead of trusting its status or invented fields. Always require an explicit inclusion choice because double counting depends on the confirmed budget. Derive review instructions and disable incomplete confirmation. Retain raw and guarded evaluation outputs. Historical 8/40 and new 11/12 are different sets/contracts, not comparable accuracy percentages. Tests and browser verify the boundaries; keep experimental labeling.
+
+## October 30, 2026 — Explain amounts using their actual basis
+
+Pass the available wallet balance explicitly to the explanation renderer so its proposed post-deposit balance cannot be confused with the reserve. Expose monthly essentials and exact configured scenario fractions in summary coverage metadata; render the fraction rather than hardcoding labels by card position. Compare scenarios against the buffer only and state that wallet money is excluded. These are presentation/metadata corrections; the existing financial rules and confirmation behavior are unchanged.

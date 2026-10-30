@@ -87,10 +87,19 @@ def test_templates_cover_every_reason_without_placeholders(golden, config):
         templates = json.loads((language_dir / f"reasons.{language}.json").read_text())
         assert set(REASON_CODES) <= templates.keys()
         for code in REASON_CODES:
-            lines = explain(replace(rec, reason_codes=(code,)), market, language, templates)
+            lines = explain(
+                replace(rec, reason_codes=(code,)),
+                market,
+                language,
+                templates,
+                available_minor=golden[1].available_minor,
+            )
             assert 0 < len(lines) <= 3
             assert "{" not in lines[0] and "}" not in lines[0]
-    assert "PHP 120.00" in explain(rec, market, "en", templates)[0]
+    assert (
+        "PHP 120.00"
+        in explain(rec, market, "en", templates, available_minor=golden[1].available_minor)[0]
+    )
 
 
 def test_currency_formatting_uses_exponent(config):
