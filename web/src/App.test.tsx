@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
-import App from './App';
+import App, { ConsentBalances } from './App';
 import { checkHealth, toMinor } from './api';
 
 describe('foundation', () => {
@@ -25,5 +25,23 @@ describe('foundation', () => {
   it('does not show ready for an unhealthy server', async () => {
     await expect(checkHealth(vi.fn().mockResolvedValue(new Response('', {status: 503})))).rejects.toThrow();
     expect(await checkHealth(vi.fn().mockResolvedValue(new Response('{}')))).toBe(false);
+  });
+});
+
+describe('consent balance disclosure', () => {
+  it('shows starting balances as read-only synthetic money', () => {
+    const html = renderToStaticMarkup(<ConsentBalances wallet={{ available_minor: 200000, buffer_minor: 50000 }} />);
+    expect(html).toContain('Everyday wallet');
+    expect(html).toContain('₱2,000.00');
+    expect(html).toContain('Emergency buffer');
+    expect(html).toContain('₱500.00');
+    expect(html).toContain('Synthetic balances. No real money.');
+    expect(html).not.toContain('<input');
+  });
+  it('shows updated balances when consent is reviewed later', () => {
+    const html = renderToStaticMarkup(<ConsentBalances wallet={{ available_minor: 188000, buffer_minor: 62000 }} />);
+    expect(html).toContain('₱1,880.00');
+    expect(html).toContain('₱620.00');
+    expect(html).not.toContain('₱2,000.00');
   });
 });

@@ -40,7 +40,7 @@ export default function App() {
   const refresh = async () => { setWallet(await api<Wallet>('/wallet')); if (choices[0] && choices[1]) accept(await api<Summary>('/summary')); };
   const start = () => perform(async () => {
     const response = await api<{ token: string; assistant_mode: string }>('/sandbox/start', 'POST');
-    setSession(response.token); setModelMode(response.assistant_mode); setPhase('consent');
+    setSession(response.token); setWallet(await api<Wallet>('/wallet')); setModelMode(response.assistant_mode); setPhase('consent');
   });
   const grant = () => perform(async () => {
     await api('/consents', 'POST', { scopes: allScopes.filter((_, i) => choices[i]), days });
@@ -120,6 +120,7 @@ export default function App() {
     <header className="topbar"><a className="wordmark" href="#" onClick={e => e.preventDefault()}><span className="logo">i</span>{c.brand}</a><span className="demo-badge">{c.notice}</span></header>
     {phase === 'start' ? <main className="landing"><p className="eyebrow">{c.eyebrow}</p><h1>{c.hero}</h1><p className="lead">{c.intro}</p><button className="primary" onClick={start} disabled={busy}>{busy ? c.busy : c.start} <span aria-hidden="true">↗</span></button><p className="muted">{c.startNote}</p><div className="landing-cards"><article><span className="step">01</span><h2>{c.reserve}</h2><p>{c.overviewIntro}</p></article><article><span className="step">02</span><h2>{c.suggestion}</h2><p>{c.suggestionNote}</p></article><article><span className="step">03</span><h2>{c.emergency}</h2><p>{c.emergencyIntro}</p></article></div><p className="scope">{c.scope}</p></main>
     : phase === 'consent' ? <main className="consent"><p className="eyebrow">{c.notice}</p><h1>{c.consentTitle}</h1><p className="lead">{c.consentIntro}</p>
+      <ConsentBalances wallet={wallet} />
       {[['transactions', 'transactionsNote'], ['balances', 'balancesNote'], ['transfers', 'transfersNote'], ['ai', 'aiNote']].map(([title, description], i) => <label className="consent-option" key={title}><input type="checkbox" checked={choices[i]} onChange={e => setChoices(old => old.map((v, j) => j === i ? e.target.checked : v))} /><span><strong>{c[title as keyof typeof c]}</strong><small>{c[description as keyof typeof c]}</small></span></label>)}
       <label className="field">{c.expiry}<select value={days} onChange={e => setDays(Number(e.target.value))}>{[30, 90, 180].map(day => <option key={day} value={day}>{day} {c.days}</option>)}</select></label>
       <button className="primary" disabled={busy || !choices[0] || !choices[1]} onClick={grant}>{busy ? c.busy : c.continue}</button></main>
@@ -169,4 +170,15 @@ function MoneyInput({ value, onValue }: { value: number; onValue: (value: number
     try { const parsed = toMinor(event.target.value); event.target.setCustomValidity(''); onValue(parsed); }
     catch { event.target.setCustomValidity('Enter an amount with up to two decimal places.'); }
   }} onBlur={event => event.target.reportValidity()} />;
+}
+
+export function ConsentBalances({ wallet }: { wallet: Wallet }) {
+  return <section className="card consent-balances" aria-labelledby="demo-balances-title">
+    <h2 id="demo-balances-title">{c.demoBalances}</h2>
+    <p>{c.demoBalancesNote}</p>
+    <dl className="consent-balance-grid">
+      <div><dt>{c.demoWallet}</dt><dd>{money(wallet.available_minor)}</dd><p>{c.demoWalletNote}</p></div>
+      <div><dt>{c.buffer}</dt><dd>{money(wallet.buffer_minor)}</dd><p>{c.demoBufferNote}</p></div>
+    </dl>
+  </section>;
 }

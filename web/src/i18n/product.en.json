@@ -4,6 +4,7 @@
   "intro": "Protect the essentials ahead of you. Set a little aside when there is room. Reach for your buffer when life happens.",
   "start": "Try the rider demo", "startNote": "A fictional Philippine delivery rider. No signup or personal data.",
   "scope": "This prototype uses a mock wallet and a fixed September 28, 2026 scenario. Suggestions are estimates, not guarantees.",
+  "demoBalances": "Your demo balances", "demoBalancesNote": "Synthetic balances. No real money.", "demoWallet": "Everyday wallet", "demoWalletNote": "Available for everyday expenses.", "demoBufferNote": "Already set aside for emergencies.",
   "consentTitle": "Your data. Your choice.", "consentIntro": "Choose what this synthetic demo may use. You can withdraw your buffer even after revoking analysis consent.",
   "transactions": "Use synthetic income and spending history", "transactionsNote": "Estimate payment timing and everyday essentials.",
   "balances": "Use mock balances for planning", "balancesNote": "Compare your available money with upcoming needs.",
