@@ -73,3 +73,7 @@ Removed decorative sidebar subtitle and redundant feed eyebrow. Photo posts now 
 ## Compact summary — November 3
 
 Reduced Buffer header padding and typography; changed vertically stacked actions to a two-column layout so the feed appears higher. Mobile actions retain two columns. CSS-only presentation change.
+
+## Two-column feed — November 3
+
+Changed desktop price feed to two equal-width cards with smaller photo heights and compact metadata. Below 850px the feed uses one column. Empty states span both columns. CSS-only layout update.
