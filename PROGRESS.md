@@ -69,3 +69,7 @@ Full verification before final privacy cleanup: 157 backend + 6 frontend tests, 
 ## Minimal feed copy — November 3
 
 Removed decorative sidebar subtitle and redundant feed eyebrow. Photo posts now show author, demo badge, image, item, price, store/quantity, short freshness/confirmation indicators and primary reactions. Moved captions, exact timestamps, conditions, sample-data explanation, image credits and secondary report actions into Details. Kept visible demo badges; disclosure remains accessible. Simplified rewards introduction and collapsed offer funding/expiry details. TypeScript, six frontend tests and both builds passed. No financial logic changed.
+
+## Compact summary — November 3
+
+Reduced Buffer header padding and typography; changed vertically stacked actions to a two-column layout so the feed appears higher. Mobile actions retain two columns. CSS-only presentation change.
