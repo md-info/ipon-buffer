@@ -115,3 +115,14 @@ Removed the top You shortcut and All finds button. Feed tabs and primary navigat
 ## Gapless feed columns — November 3
 
 Removed the Around you / filtered-view title row. Switched posts to independent CSS columns so short cards do not leave grid-row gaps. Two columns remain on mobile and desktop. TypeScript passed. CSS columns read top-to-bottom within each column.
+
+
+## Android viewport and deposit completion — November 3
+
+WebView now lives inside a native FrameLayout with margins from system bars, cutouts and keyboard insets. This resizes the CSS viewport, including fixed bottom navigation and post pages, rather than padding WebView content. Rebuilt and signature-verified APK, copied to ../Ipon-Buffer-demo.apk, installed and launched on IponDemo. Visually checked login and home: time/status area and three-button Android navigation remain outside app content.
+
+Deposits retain a server-side completion receipt until the user explicitly saves a reviewed plan. Home and savings details show the receipt instead of immediately prompting the smaller recalculated contribution. Engine guardrails and exact-centavo calculation unchanged. In-flight action lock prevents duplicate taps; changed amounts require fresh review; idempotent retries remain. Regression verifies receipt persists through summary refresh, retry posts only once, and plan save clears receipt. All 158 backend and six frontend tests, TypeScript and production build passed.
+
+## Ten-minute stakeholder pitch — November 3
+
+Created ten editable slides with timed speaker notes and standalone script for November 4. Order: illustrative persona, pitch, workflow, AI, competition, behaviour, revenue, stakeholder metrics, integration, pilot. Positions Ipon as a layer within existing wallet infrastructure. GCash/Maya are prospective examples only. Sources for Venmo, GasBuddy and Fogg in notes. Clearly distinguishes prototype APK from production integration, and commercial hypotheses from demonstrated results. All ten slide previews visually inspected.

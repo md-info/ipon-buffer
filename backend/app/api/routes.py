@@ -203,6 +203,7 @@ def create_app(database_url="sqlite:///ipon-demo.db", adapter=None):
             "plan": state["plan"],
             "as_of": AS_OF.isoformat(),
             "amount_minor": rec.amount_minor,
+            "deposit_receipt_minor": state.get("deposit_receipt_minor"),
             "reserve_minor": rec.reserve_minor,
             "shortfall_minor": rec.shortfall_minor,
             "horizon_days": rec.horizon_days,
@@ -309,6 +310,7 @@ def create_app(database_url="sqlite:///ipon-demo.db", adapter=None):
             fail(422, "INVALID_DATE", "Use a current or future income date within one year.")
         state["version"] += 1
         state["plan"] = {**body.model_dump(mode="json"), "version": state["version"]}
+        state["deposit_receipt_minor"] = None
         state["recommendation"] = None
 
     @app.put("/api/v1/plan")
@@ -358,6 +360,7 @@ def create_app(database_url="sqlite:///ipon-demo.db", adapter=None):
                 state["available"] -= amount
                 state["buffer"] += amount
                 state["saved"] += amount
+                state["deposit_receipt_minor"] = amount
             elif operation == "buffer.withdraw":
                 if amount > state["buffer"]:
                     fail(422, "INSUFFICIENT_BUFFER", "The withdrawal exceeds your buffer.")

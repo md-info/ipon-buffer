@@ -5,6 +5,10 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Build;
+import android.graphics.Insets;
+import android.view.WindowInsets;
+import android.widget.FrameLayout;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -22,14 +26,32 @@ public final class MainActivity extends Activity {
         super.onCreate(state);
         getWindow().setStatusBarColor(0xfffafbf7);
         getWindow().setNavigationBarColor(0xfffafbf7);
-        getWindow().getDecorView().setSystemUiVisibility(0x2000 | 0x10);
+        // Size the viewport itself: WebView padding does not protect CSS fixed elements.
+        if (Build.VERSION.SDK_INT >= 30) getWindow().setDecorFitsSystemWindows(false);
+        getWindow().getDecorView().setSystemUiVisibility(0x2000 | 0x10 | 0x100 | 0x200 | 0x400);
+        FrameLayout viewport = new FrameLayout(this);
         web = new WebView(this);
-        setContentView(web);
-        web.setOnApplyWindowInsetsListener((v, insets) -> {
-            v.setPadding(insets.getSystemWindowInsetLeft(), insets.getSystemWindowInsetTop(),
-                         insets.getSystemWindowInsetRight(), insets.getSystemWindowInsetBottom());
-            return insets;
+        viewport.addView(web, new FrameLayout.LayoutParams(-1, -1));
+        setContentView(viewport);
+        viewport.setOnApplyWindowInsetsListener((v, insets) -> {
+            int left, top, right, bottom;
+            if (Build.VERSION.SDK_INT >= 30) {
+                Insets safe = insets.getInsets(WindowInsets.Type.systemBars()
+                    | WindowInsets.Type.displayCutout() | WindowInsets.Type.ime());
+                left = safe.left; top = safe.top; right = safe.right; bottom = safe.bottom;
+            } else {
+                left = insets.getSystemWindowInsetLeft(); top = insets.getSystemWindowInsetTop();
+                right = insets.getSystemWindowInsetRight(); bottom = insets.getSystemWindowInsetBottom();
+            }
+            FrameLayout.LayoutParams bounds = (FrameLayout.LayoutParams) web.getLayoutParams();
+            if (bounds.leftMargin != left || bounds.topMargin != top
+                    || bounds.rightMargin != right || bounds.bottomMargin != bottom) {
+                bounds.setMargins(left, top, right, bottom);
+                web.setLayoutParams(bounds);
+            }
+            return Build.VERSION.SDK_INT >= 30 ? WindowInsets.CONSUMED : insets.consumeSystemWindowInsets();
         });
+        viewport.requestApplyInsets();
         web.getSettings().setJavaScriptEnabled(true);
         web.getSettings().setDomStorageEnabled(true);
         web.getSettings().setAllowFileAccess(false);

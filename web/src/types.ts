@@ -2,7 +2,7 @@ export type Bill = { id: string; label: string; amount_minor: number; due_date: 
 export type Plan = { version: number; confirmed: boolean; routine_daily_minor: number; next_expected_income: string; obligations: Bill[] };
 export type Wallet = { available_minor: number; buffer_minor: number };
 export type Summary = Wallet & {
-  version: number; plan: Plan; as_of: string; amount_minor: number; reserve_minor: number;
+  deposit_receipt_minor: number | null; version: number; plan: Plan; as_of: string; amount_minor: number; reserve_minor: number;
   shortfall_minor: number; horizon_days: number; protected_through: string; room_per_day_minor: number | null;
   buffer_days: number | null; stage: { days: number; target_minor: number; reached: boolean } | null;
   eta_days: number | null; reasons: string[]; guardrails: { name: string; passed: boolean; detail: string }[];

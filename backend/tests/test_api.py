@@ -299,3 +299,19 @@ def test_bad_transfer_amounts(client, amount):
         ).status_code
         == 422
     )
+
+
+def test_deposit_receipt_survives_refresh_until_explicit_plan_review(client):
+    headers = begin(client)
+    body = deposit_request(client, headers)
+    result = client.post("/api/v1/buffer/transfer", headers=headers, json=body)
+    assert result.status_code == 200
+    for _ in range(2):
+        summary = client.get("/api/v1/summary", headers=headers).json()
+        assert summary["deposit_receipt_minor"] == 12_000
+        assert summary["buffer_minor"] == 62_000
+    retried = client.post("/api/v1/buffer/transfer", headers=headers, json=body).json()
+    assert retried == result.json()
+    reviewed = client.put("/api/v1/plan", headers=headers, json=summary["plan"]).json()
+    assert reviewed["deposit_receipt_minor"] is None
+    assert reviewed["buffer_minor"] == 62_000

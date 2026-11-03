@@ -30,6 +30,7 @@ export default function App() {
   const [audit, setAudit] = useState<{ verified: boolean; entries: { action: string; ts: number }[] } | null>(null);
   const grantedChoices = useRef(initialChoices);
   const controller = useRef<AbortController | null>(null);
+  const operationRunning = useRef(false);
   const retry = useRef<Record<string, string>>({});
   const pendingDeposit = useRef<{ id: string; amount_minor: number } | null>(null);
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, [tab, phase]);
@@ -48,9 +49,11 @@ export default function App() {
   const openView = (view: Tab) => { window.history.pushState({ipon: view}, '', window.location.pathname); setTab(view); setError(''); setNotice(''); };
   const accept = (value: Summary) => { setData(value); setPlan(value.plan); setWallet(value); setModelMode(value.assistant_mode); };
   const perform = async (operation: () => Promise<void>) => {
+    if (operationRunning.current) return;
+    operationRunning.current = true;
     setBusy(true); setError(''); setNotice('');
     try { await operation(); } catch (e) { setError(e instanceof Error ? e.message : 'Request failed'); }
-    finally { setBusy(false); }
+    finally { operationRunning.current = false; setBusy(false); }
   };
   const refresh = async () => { setWallet(await api<Wallet>('/wallet')); if (choices[0] && choices[1]) accept(await api<Summary>('/summary')); };
   const start = () => perform(async () => {
@@ -71,8 +74,14 @@ export default function App() {
     let value = operation === 'transfer' ? 0 : toMinor(amount);
     let recommendation_id: string | undefined;
     if (operation === 'transfer') {
+      if (!data || data.deposit_receipt_minor != null) return;
       const rec = pendingDeposit.current ?? await api<{ id: string; amount_minor: number }>('/recommendation', 'POST');
       pendingDeposit.current = rec;
+      if (rec.amount_minor !== data.amount_minor) {
+        pendingDeposit.current = null;
+        await refresh();
+        throw new Error('The suggested amount changed. Review it before depositing.');
+      }
       value = rec.amount_minor; recommendation_id = rec.id;
     }
     const fingerprint = `${operation}:${value}:${recommendation_id ?? ''}`;
@@ -88,7 +97,10 @@ export default function App() {
         throw error;
       });
     delete retry.current[fingerprint];
-    if (operation === 'transfer') pendingDeposit.current = null;
+    if (operation === 'transfer') {
+      pendingDeposit.current = null;
+      setData(old => old && ({ ...old, deposit_receipt_minor: value }));
+    }
     setWallet(result);
     if (operation === 'withdraw') { setWithdrawalMade(true); setRefill(result.refill ?? null); }
     setNotice(operation === 'transfer' ? c.depositDone : operation === 'withdraw' ? c.withdrawn : c.paymentDone);
@@ -140,13 +152,13 @@ export default function App() {
       <button className="primary" disabled={busy || !choices[0] || !choices[1]} onClick={grant}>{busy ? c.busy : c.continue}</button></main>
     : <div className="workspace ipon-unified">
       <main className="dashboard">
-        <section className="ipon-buffer-header" aria-label="Your emergency buffer"><div><p className="eyebrow">YOUR EMERGENCY BUFFER</p><button className="ipon-balance-link" onClick={()=>{if(data){openView('overview');}else{setPhase('consent');}}}>{money(wallet.buffer_minor)} <span>↗</span></button><p>{data ? `${data.buffer_days?.toFixed(1) ?? '—'} days of planned essentials covered` : 'Start your plan. Make room for the unexpected.'}</p></div><div className="ipon-buffer-stat"><small>Everyday wallet</small><strong>{money(wallet.available_minor)}</strong></div><div className="ipon-buffer-stat"><small>Suggested contribution</small><strong>{data ? money(data.amount_minor) : 'Set up your plan'}</strong><small>{data ? 'Based on your reviewed expenses' : 'Choose permissions to calculate'}</small></div><div className="ipon-buffer-buttons"><button className="primary" onClick={()=>{if(data){openView('plan');}else{setPhase('consent');}}}>{data ? 'Edit savings plan' : 'Start savings plan'}</button>{data && <button onClick={()=>openView('overview')}>View buffer details</button>}<button onClick={()=>openView('emergency')}>Emergency access</button><button onClick={()=>openView('rewards')}>Rewards & partners</button><button onClick={()=>openView('privacy')}>Permissions</button></div></section>
+        <section className="ipon-buffer-header" aria-label="Your emergency buffer"><div><p className="eyebrow">YOUR EMERGENCY BUFFER</p><button className="ipon-balance-link" onClick={()=>{if(data){openView('overview');}else{setPhase('consent');}}}>{money(wallet.buffer_minor)} <span>↗</span></button><p>{data ? `${data.buffer_days?.toFixed(1) ?? '—'} days of planned essentials covered` : 'Start your plan. Make room for the unexpected.'}</p></div><div className="ipon-buffer-stat"><small>Everyday wallet</small><strong>{money(wallet.available_minor)}</strong></div><div className="ipon-buffer-stat"><small>{data?.deposit_receipt_minor != null ? 'Deposited' : 'Suggested contribution'}</small><strong>{data ? money(data.deposit_receipt_minor ?? data.amount_minor) : 'Set up your plan'}</strong><small>{data ? (data.deposit_receipt_minor != null ? 'Added to your buffer' : 'Based on your reviewed expenses') : 'Choose permissions to calculate'}</small></div><div className="ipon-buffer-buttons"><button className="primary" onClick={()=>{if(data){openView('plan');}else{setPhase('consent');}}}>{data ? 'Edit savings plan' : 'Start savings plan'}</button>{data && <button onClick={()=>openView('overview')}>View buffer details</button>}<button onClick={()=>openView('emergency')}>Emergency access</button><button onClick={()=>openView('rewards')}>Rewards & partners</button><button onClick={()=>openView('privacy')}>Permissions</button></div></section>
         {tab !== 'nearby' && <div className="ipon-editor-heading"><h1>{tab === 'plan' ? c.planTitle : tab === 'overview' ? 'Your buffer details' : tab === 'emergency' ? c.emergencyTitle : tab === 'rewards' ? 'Rewards & partners' : c.privacyTitle}</h1><button onClick={goHome}>← Back to home</button></div>}
         {tab === 'overview' && (data ? <>
           <p className="lead compact">{c.overviewIntro}</p>
           <div className="overview-grid"><section className="buffer-card"><p>{c.buffer}</p><div className="big-money">{money(wallet.buffer_minor)}</div><p>{data.buffer_days?.toFixed(1) ?? '—'} {c.cover}</p><div className="buffer-track"><span style={{ width: `${Math.min(100, data.stage ? wallet.buffer_minor / data.stage.target_minor * 100 : 0)}%` }} /></div><div className="split"><span>{c.goal}</span><strong>{data.stage?.days ?? '—'} {c.days}</strong></div><div className="stage-ladder">{[7, 14, 30, 60, 90].map(day => <span className={(data.buffer_days ?? 0) >= day ? 'reached' : ''} key={day}>{day}d</span>)}</div><p className="fine">{c.etaUnavailable}</p></section>
           <div className="stack"><section className="card stat"><p>{c.wallet}</p><strong>{money(wallet.available_minor)}</strong></section><section className="card stat"><p>{c.reserve}</p><strong>{money(data.reserve_minor)}</strong><small>{c.through} {data.protected_through}</small></section></div></div>
-          <section className="saving-card"><div><p className="eyebrow">{c.suggestion}</p><strong>{money(data.amount_minor)}</strong><p>{data.amount_minor ? c.suggestionNote : c.noSurplus}</p></div><button className="primary" onClick={() => move('transfer')} disabled={busy || !data.amount_minor || !choices[2]}>{busy ? c.busy : c.confirmDeposit}</button></section>
+          {data.deposit_receipt_minor != null ? <section className="saving-card" role="status"><div><p className="eyebrow">Deposited</p><strong>{money(data.deposit_receipt_minor)}</strong><p>Added to your emergency buffer.</p></div><button onClick={() => openView('plan')}>Review plan</button></section> : <section className="saving-card"><div><p className="eyebrow">{c.suggestion}</p><strong>{money(data.amount_minor)}</strong><p>{data.amount_minor ? c.suggestionNote : c.noSurplus}</p></div><button className="primary" onClick={() => move('transfer')} disabled={busy || !data.amount_minor || !choices[2]}>{busy ? c.busy : c.confirmDeposit}</button></section>}
           <div className="two-col"><section className="card"><h2>{c.why}</h2>{data.reasons.map(reason => <p key={reason}>{reason}</p>)}<details><summary>{c.review}</summary>{data.guardrails.map(check => <p className="fine" key={check.name}>{check.passed ? '✓' : '×'} {check.detail}</p>)}</details></section><section className="card"><h2>{c.room}</h2><strong className="medium-money">{data.room_per_day_minor === null ? c.unavailable : money(data.room_per_day_minor)}</strong><p className="fine">{c.roomNote}</p></section></div>
           <section className="card scenarios">
             <h2>{c.scenarios}</h2>
@@ -171,7 +183,7 @@ export default function App() {
 
         {tab === 'rewards' && <Rewards onChanged={refresh} />}
         {tab === 'privacy' && <><p className="lead compact">{c.privacyIntro}</p><section className="card"><h2>{c.consentTitle}</h2><div className="actions"><button onClick={() => setPhase('consent')}>{c.editConsent}</button><button disabled={busy} onClick={revoke}>{c.revoke}</button></div></section><section className="card"><h2>{c.audit}</h2><p className="fine">{c.auditNote}</p><button disabled={busy} onClick={() => perform(async () => setAudit(await api('/audit')))}>{c.audit}</button>{audit && <><p className={audit.verified ? 'success-text' : 'error-text'}>{audit.verified ? c.verified : c.auditFailed}</p><ul className="audit-list">{audit.entries.slice(-12).reverse().map((entry, i) => <li key={i}>{entry.action}</li>)}</ul></>}</section><section className="card"><h2>{c.delete}</h2><p>{c.deleteNote}</p><button className="danger" onClick={() => setConfirmAction('delete')}>{c.delete}</button></section></>}
-        <div className="ipon-feed-embedded"><Nearby embedded host={{request: api, openSavings: () => {if(data){openView('plan');}else{setPhase('consent');}}, savings: data ? {contribution: data.amount_minor, essentials: data.reserve_minor, daily: data.plan.routine_daily_minor, asOf: data.as_of} : undefined}} /></div>
+        <div className="ipon-feed-embedded"><Nearby embedded host={{request: api, openSavings: () => {if(data){openView('plan');}else{setPhase('consent');}}, savings: data ? {contribution: data.deposit_receipt_minor != null ? 0 : data.amount_minor, essentials: data.reserve_minor, daily: data.plan.routine_daily_minor, asOf: data.as_of} : undefined}} /></div>
         <footer>{c.footer}</footer>
       </main></div>}
     {error && <div className="toast error" role="alert">{error}<button aria-label="Dismiss error" onClick={() => setError('')}>×</button></div>}
