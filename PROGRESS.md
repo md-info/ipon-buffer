@@ -126,3 +126,6 @@ Deposits retain a server-side completion receipt until the user explicitly saves
 ## Ten-minute stakeholder pitch — November 3
 
 Created ten editable slides with timed speaker notes and standalone script for November 4. Order: illustrative persona, pitch, workflow, AI, competition, behaviour, revenue, stakeholder metrics, integration, pilot. Positions Ipon as a layer within existing wallet infrastructure. GCash/Maya are prospective examples only. Sources for Venmo, GasBuddy and Fogg in notes. Clearly distinguishes prototype APK from production integration, and commercial hypotheses from demonstrated results. All ten slide previews visually inspected.
+
+
+Pitch correction: replaced the Venmo comparison as the central pitch with the customer problem, embedded wallet solution, and partner value proposition. Venmo remains only a competitor talking point. Updated PowerPoint speaker notes and standalone script.
