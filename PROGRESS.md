@@ -95,3 +95,11 @@ Reduced post-body padding, image-to-title gap, metadata margins, reaction spacin
 Built a native Java/WebView Android shell and reproducible direct-SDK build pipeline, using installed JDK and user-approved Google SDK license/tools. Package com.iponbuffer.app, minimum Android 8/API26, target API35. Signed development APK copied to outputs/Ipon-Buffer-demo.apk; v2/v3 signatures verified and manifest inspected. Includes document-picker photo selection, external HTTPS handling, loopback-only internal navigation and native back handling. USB adb reverse connects phone localhost:5173 to the existing web/API/AI stack on this computer. No public hosting or app dependencies added. Development key and build output ignored by Git.
 
 No Android device was attached; installation/runtime/photo-picker/insets are unverified on hardware. This is a connected demo, not a standalone offline APK or production Android SDK. Setup: android/README.md and android/connect.ps1. Existing web/savings code unchanged. Build-script Ruff lint/format passed. Final APK SHA256 F030D0B2D64420413B31F84AA5F0AA2383813A112F64E0D996BBB3D701C3B384.
+
+## Android phone density — November 3
+
+Added phone-specific compact three-stat wallet banner and two-column photo feed, replacing the spacious stacked phone layout. Tightened header/actions and card typography while retaining all controls. CSS applies to the live web UI consumed by the Android APK.
+
+## Pull refresh — November 3
+
+Removed the Refresh button. A downward touch gesture at document top refreshes the feed after a 70px threshold; a temporary pull/loading indicator appears only during the gesture/request. Errors remain visible and success stays screen-reader-only. Android emulator visually verified compact three-stat banner and two-column feed after reload. TypeScript, six frontend tests and both builds passed. Pull gesture behavior needs additional device testing.

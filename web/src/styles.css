@@ -37,3 +37,50 @@ button.primary { background:#1d5947; color:white; border-color:#1d5947; } button
 .ipon-back{border:0;background:transparent;color:#25663c;padding:10px 0;margin:0 0 16px;font-size:13px;cursor:pointer}.ipon-editor-heading button{border:0;color:#28603c;background:#edf3e8;border-radius:24px;padding:10px 18px}.ipon-cancel{margin-left:12px}.ipon-unified .card,.consent .card{border-radius:14px}.ipon-unified .dashboard>.lead{font-size:15px}.ipon-feed-embedded .nearby-masthead .nearby-search{max-width:none}.ipon-feed-embedded .nearby-masthead{background:#fff}.ipon-unified button:focus-visible,.consent button:focus-visible{outline:3px solid #90b270;outline-offset:3px}.ipon-editor-heading{scroll-margin-top:20px}@media(max-width:650px){.ipon-editor-heading{align-items:flex-start}.ipon-editor-heading button{white-space:nowrap;font-size:11px}.consent{padding:24px 18px}.ipon-buffer-buttons{grid-template-columns:1fr 1fr}.topbar{padding:15px 18px}.topbar .demo-badge{font-size:9px}}
 /* Compact savings summary keeps the community feed near the fold. */
 .ipon-buffer-header{padding:18px 26px;gap:24px;margin-bottom:18px;border-radius:15px}.ipon-buffer-header .eyebrow{margin:0 0 7px}.ipon-buffer-header p{margin:6px 0 0;font-size:11px}.ipon-balance-link{font-size:36px!important;line-height:1.15}.ipon-buffer-stat{gap:6px;max-width:180px}.ipon-buffer-stat strong{font-size:21px}.ipon-buffer-buttons{grid-template-columns:1fr 1fr;gap:7px;max-width:310px}.ipon-buffer-buttons button{padding:9px 13px;font-size:11px;white-space:nowrap}.ipon-buffer-header>div:first-child{min-width:190px}.ipon-feed-embedded{margin-top:18px}@media(max-width:700px){.ipon-buffer-header{padding:17px 20px;gap:14px}.ipon-buffer-header>div:first-child{flex-basis:auto;min-width:160px}.ipon-balance-link{font-size:31px!important}.ipon-buffer-stat strong{font-size:18px}.ipon-buffer-stat small{font-size:10px}.ipon-buffer-buttons{max-width:none;width:100%;grid-template-columns:1fr 1fr}.ipon-buffer-header p{font-size:10px}}
+
+/* Phone layout: compact wallet banner and two-column visual feed. */
+@media(max-width:700px){
+ .ipon-unified>.dashboard{padding:10px 12px}
+ .ipon-buffer-header{display:grid;grid-template-columns:1.05fr .9fr 1fr;padding:12px 14px;gap:8px 10px;margin-bottom:12px;border-radius:12px;align-items:start}
+ .ipon-buffer-header>div:first-child{min-width:0;width:auto;flex-basis:auto}
+ .ipon-buffer-header .eyebrow{font-size:8px;letter-spacing:1px;margin:0 0 5px}
+ .ipon-balance-link{font-size:25px!important;letter-spacing:-1px;line-height:1.2}
+ .ipon-balance-link span{font-size:14px}
+ .ipon-buffer-header>div:first-child>p:not(.eyebrow){display:none}
+ .ipon-buffer-stat{min-width:0;max-width:none;gap:6px;padding-top:1px}
+ .ipon-buffer-stat strong{font-size:15px;line-height:1.25}
+ .ipon-buffer-stat small{font-size:8px;line-height:1.3}
+ .ipon-buffer-stat>small:last-child:not(:first-child){display:none}
+ .ipon-buffer-buttons{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:5px;max-width:none;width:100%;padding-top:4px}
+ .ipon-buffer-buttons button{flex:1;padding:7px 6px;font-size:9px;white-space:nowrap;min-height:30px}
+ .ipon-feed-embedded{margin-top:12px}
+ .topbar{padding:10px 14px;min-height:48px}
+ .topbar .wordmark{font-size:17px;gap:8px}
+ .topbar .logo{width:27px;height:27px;font-size:23px}
+ .ipon-feed-embedded .nearby-masthead{height:50px}
+ .ipon-feed-embedded .nearby-layout{padding-top:14px}
+ .nearby-composer{padding:10px!important}
+ .nearby-composer>span:nth-child(2){font-size:12px}
+ .nearby-feed-title{margin-bottom:12px}
+ .nearby h1{font-size:21px}
+ .nearby-feed-tabs{gap:12px;margin:10px 0}
+ .nearby-feed-tabs button{font-size:10px;padding:9px 0}
+ .nearby-feed{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .nearby-report-body{padding:9px 9px 6px}
+ .nearby-report-body>.nearby-post-photo:first-child{margin-top:-9px}
+ .nearby-post-photo{margin:0 -9px 9px}
+ .nearby-post-photo .nearby-photo{height:145px}
+ .nearby-price{display:flex;flex-wrap:wrap;gap:4px;align-items:baseline}
+ .nearby-price h2{font-size:13px;line-height:1.25;max-width:100%;width:100%}
+ .nearby-price strong{font-size:17px}
+ .nearby-report-body .nearby-storeline{font-size:10px;line-height:1.35;margin-top:4px!important}
+ .nearby-meta{font-size:9px;margin:6px 0}
+ .nearby-actions{gap:2px}
+ .nearby-actions>button{padding:7px 2px;font-size:9px;min-height:32px}
+ .nearby-author-footer{padding-top:6px;gap:5px}
+ .nearby-author-footer .nearby-avatar{width:21px;height:21px;font-size:9px}
+ .nearby-author-footer strong{font-size:10px}
+ .nearby-detail-dialog .nearby-price h2{font-size:20px}
+ .nearby-detail-dialog .nearby-price strong{font-size:24px}
+}
+.ipon-feed-embedded .nearby-feed{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
