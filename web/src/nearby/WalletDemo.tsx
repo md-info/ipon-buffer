@@ -16,5 +16,5 @@ export default function WalletDemo() {
     } catch(e){sessionStorage.removeItem('ipon-nearby-demo-'+name);setError(String(e));}
   }
   useEffect(()=>{void select('Mika');},[]);
-  return <div><header className="topbar"><strong>E-Wallet <small> / Ipon Nearby</small></strong><a href="/">Open Ipon Buffer</a></header><div className="nearby"><p>Synthetic integration sandbox. Switch neighbors to test independent confirmations. No real wallet connection.</p><button disabled={!ready&&!error} onClick={()=>void select(who==='Mika'?'Sam':'Mika')}>Demo neighbor: {who} · switch to {who==='Mika'?'Sam':'Mika'}</button>{error&&<p role="alert">{error} <button onClick={()=>void select(who)}>Retry</button></p>}</div>{ready&&<Nearby key={who} host={{request,brand:'E-Wallet',openSavings:()=>{window.location.href='/';}}}/>}</div>;
+  return <div><div className="wallet-demo-strip"><span>E-Wallet integration demo · Synthetic community</span><a href="/">Ipon Buffer savings</a><button disabled={!ready&&!error} onClick={()=>void select(who==='Mika'?'Sam':'Mika')}>Demo neighbor: {who} · switch to {who==='Mika'?'Sam':'Mika'}</button>{error&&<p role="alert">{error} <button onClick={()=>void select(who)}>Retry</button></p>}</div>{ready&&<Nearby key={who} host={{request,brand:'E-Wallet',openSavings:()=>{window.location.href='/';}}}/>}</div>;
 }
