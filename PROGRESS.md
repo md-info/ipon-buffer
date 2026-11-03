@@ -77,3 +77,7 @@ Reduced Buffer header padding and typography; changed vertically stacked actions
 ## Two-column feed — November 3
 
 Changed desktop price feed to two equal-width cards with smaller photo heights and compact metadata. Below 850px the feed uses one column. Empty states span both columns. CSS-only layout update.
+
+## Clickable post details — November 3
+
+Removed post Details dropdown and Recent indicator. Clicking a card or pressing Enter/Space on a focused card opens a detail dialog with photo, observation time, conditions, credit and secondary reporting actions. Reaction controls remain independent. Back to feed, Escape and backdrop dismiss the dialog. TypeScript, six frontend tests and app/SDK builds passed.
