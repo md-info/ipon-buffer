@@ -81,3 +81,7 @@ Changed desktop price feed to two equal-width cards with smaller photo heights a
 ## Clickable post details — November 3
 
 Removed post Details dropdown and Recent indicator. Clicking a card or pressing Enter/Space on a focused card opens a detail dialog with photo, observation time, conditions, credit and secondary reporting actions. Reaction controls remain independent. Back to feed, Escape and backdrop dismiss the dialog. TypeScript, six frontend tests and app/SDK builds passed.
+
+## Author footer — November 3
+
+Moved post author identity to a compact bottom row with avatar and name only. Removed author header, neighborhood/date and per-card badge from feed; observation and demo context remain in the detail dialog and global synthetic banner. Photos now start at the top edge. TypeScript check passed.
