@@ -13,3 +13,5 @@ pytest-cache-files-*/
 work/
 
 web/dist-nearby/
+
+android/build/
