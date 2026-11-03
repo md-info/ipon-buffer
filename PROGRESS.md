@@ -132,3 +132,6 @@ Pitch correction: replaced the Venmo comparison as the central pitch with the cu
 
 
 Rewrote the presentation narration for spoken delivery: concrete examples, natural transitions, no authoring instructions or repeated disclaimers in the speech. Preserved factual limits and matched all ten PowerPoint note sections to the script.
+
+
+Expanded stakeholder narration with customer decision costs, partner responsibilities, campaign economics, operating costs, attribution and pilot criteria. Updated all ten PowerPoint note sections to match.
