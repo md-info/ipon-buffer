@@ -41,3 +41,5 @@ Open http://127.0.0.1:5173/nearby for the E-Wallet integration demo, or use Ipon
 For embedding, build the standalone module with npm run build:nearby from web. See docs/NEARBY_INTEGRATION.md for the mount API, host contract, business hypothesis and production limitations. This branch does not include a native APK or real e-wallet integration.
 
 Populate the sample community feed with `.venv\Scripts\python.exe scripts/seed_nearby.py`. Six fictional reports include credited stock photos stored in web/public/demo. Sample chains/branches, prices, authors and reactions are illustrative; no retailer affiliation is claimed. Photos are bundled for offline use after setup. Existing reports are preserved.
+
+Merchant rewards prototype: open Rewards & partners from the Buffer header. Includes a capped fictional grocery offer, simulated purchases, cashback receipts, explicit cashback-to-buffer redemption and partner campaign tools. Community points stay nonredeemable. See docs/REWARDS.md for limits and integration requirements.
