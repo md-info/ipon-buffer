@@ -107,3 +107,7 @@ Removed the Refresh button. A downward touch gesture at document top refreshes t
 ## Login branding and post pages — November 3
 
 Moved the single Ipon Buffer brand above the centered login button; removed post-login brand header. Card opening now creates a #post/id browser-history entry and renders a dedicated full-screen post page with Back to feed. Back restores the feed scroll position; Android back uses normal WebView history. Detail-page reactions remain available. Underlying dashboard sections are hidden while a post page is active. TypeScript, six frontend tests and both builds passed before final CSS visibility rule. Live browser verified login branding, card opening with URL change, and Back to feed.
+
+## Search cleanup — November 3
+
+Removed the top You shortcut and All finds button. Feed tabs and primary navigation remain. Search is a single full-width field with a search icon, consistent height, restrained border and focus state across mobile/desktop. TypeScript passed.
