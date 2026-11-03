@@ -89,3 +89,5 @@ button.primary { background:#1d5947; color:white; border-color:#1d5947; } button
 .dashboard:has(.nearby-post-page)>:not(.ipon-feed-embedded){display:none}
 
 .ipon-feed-embedded .nearby-masthead{height:auto;min-height:0;padding:0;border:0;background:transparent;border-radius:0;gap:0}.ipon-feed-embedded .nearby-masthead .nearby-search{width:100%;max-width:none}.ipon-feed-embedded .nearby-search input{height:46px;font-size:14px;padding:0 16px 0 43px}.ipon-feed-embedded .nearby-layout{padding-top:18px}@media(max-width:700px){.ipon-feed-embedded .nearby-masthead{padding:0;height:auto}.ipon-feed-embedded .nearby-search input{height:42px;font-size:13px}.ipon-feed-embedded .nearby-layout{padding-top:12px}}
+
+.ipon-feed-embedded .nearby-feed{display:block;column-count:2;column-gap:14px}.ipon-feed-embedded .nearby-report{display:inline-block;width:100%;break-inside:avoid;margin-bottom:14px}@media(max-width:700px){.ipon-feed-embedded .nearby-feed{column-gap:10px}.ipon-feed-embedded .nearby-report{margin-bottom:10px}}

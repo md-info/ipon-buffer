@@ -111,3 +111,7 @@ Moved the single Ipon Buffer brand above the centered login button; removed post
 ## Search cleanup — November 3
 
 Removed the top You shortcut and All finds button. Feed tabs and primary navigation remain. Search is a single full-width field with a search icon, consistent height, restrained border and focus state across mobile/desktop. TypeScript passed.
+
+## Gapless feed columns — November 3
+
+Removed the Around you / filtered-view title row. Switched posts to independent CSS columns so short cards do not leave grid-row gaps. Two columns remain on mobile and desktop. TypeScript passed. CSS columns read top-to-bottom within each column.
