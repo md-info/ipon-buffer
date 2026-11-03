@@ -1,0 +1,23 @@
+[
+  {
+    "asset": "rice.jpg",
+    "author": "Northleg Official",
+    "source": "https://unsplash.com/photos/a-person-standing-behind-a-pile-of-shoes-yDX1yFJUMjg",
+    "license": "Unsplash License",
+    "note": "Illustrative stock image, not the demo location or price."
+  },
+  {
+    "asset": "eggs.jpg",
+    "author": "engin akyurt",
+    "source": "https://unsplash.com/photos/a-bunch-of-eggs-are-in-a-carton-Ocfa8b8iluQ",
+    "license": "Unsplash License",
+    "note": "Illustrative stock image, not the demo location or price."
+  },
+  {
+    "asset": "vegetables.jpg",
+    "author": "Toxic Smoker",
+    "source": "https://unsplash.com/photos/fresh-tomatoes-and-green-vegetables-at-a-market-stall-D4k1dm9YBe4",
+    "license": "Unsplash License",
+    "note": "Illustrative stock image, not the demo location or price."
+  }
+]
