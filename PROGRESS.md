@@ -85,3 +85,7 @@ Removed post Details dropdown and Recent indicator. Clicking a card or pressing 
 ## Author footer — November 3
 
 Moved post author identity to a compact bottom row with avatar and name only. Removed author header, neighborhood/date and per-card badge from feed; observation and demo context remain in the detail dialog and global synthetic banner. Photos now start at the top edge. TypeScript check passed.
+
+## Tighter post spacing — November 3
+
+Reduced post-body padding, image-to-title gap, metadata margins, reaction spacing and author-footer padding across desktop and mobile cards. CSS-only adjustment; no interaction changes.
