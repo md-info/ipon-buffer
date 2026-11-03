@@ -84,3 +84,6 @@ button.primary { background:#1d5947; color:white; border-color:#1d5947; } button
  .nearby-detail-dialog .nearby-price strong{font-size:24px}
 }
 .ipon-feed-embedded .nearby-feed{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+
+.ipon-login-group{display:flex;flex-direction:column;align-items:center;gap:30px}.ipon-login-group .wordmark{font-size:27px;display:flex;align-items:center;gap:10px;color:#245b49}.ipon-login-group .logo{background:#245b49;color:white;border-radius:9px;width:38px;height:38px;display:grid;place-items:center;font-size:30px;font-style:italic}
+.dashboard:has(.nearby-post-page)>:not(.ipon-feed-embedded){display:none}

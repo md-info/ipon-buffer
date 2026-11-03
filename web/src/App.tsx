@@ -132,8 +132,7 @@ export default function App() {
   });
 
   return <div className="app-shell">
-    {phase !== 'start' && <header className="topbar"><a className="wordmark" href="#" onClick={e=>{e.preventDefault();goHome();}}><span className="logo">i</span>Ipon Buffer</a><span className="demo-badge">Synthetic wallet demo</span></header>}
-    {phase === 'start' ? <main className="ipon-login"><button className="primary" onClick={start} disabled={busy} aria-label="Log in to synthetic demo">{busy ? 'Logging in…' : 'Log in'}</button></main>
+    {phase === 'start' ? <main className="ipon-login"><div className="ipon-login-group"><div className="wordmark"><span className="logo">i</span>Ipon Buffer</div><button className="primary" onClick={start} disabled={busy} aria-label="Log in to synthetic demo">{busy ? 'Logging in…' : 'Log in'}</button></div></main>
     : phase === 'consent' ? <main className="consent"><button className="ipon-back" onClick={goHome}>← Back to home</button><p className="eyebrow">{c.notice}</p><h1>{c.consentTitle}</h1><p className="lead">{c.consentIntro}</p>
       <ConsentBalances wallet={wallet} />
       {[['transactions', 'transactionsNote'], ['balances', 'balancesNote'], ['transfers', 'transfersNote'], ['ai', 'aiNote']].map(([title, description], i) => <label className="consent-option" key={title}><input type="checkbox" checked={choices[i]} onChange={e => setChoices(old => old.map((v, j) => j === i ? e.target.checked : v))} /><span><strong>{c[title as keyof typeof c]}</strong><small>{c[description as keyof typeof c]}</small></span></label>)}
