@@ -1,9 +1,10 @@
+import Nearby from './nearby/Nearby';
 import { useEffect, useRef, useState } from 'react';
 import { api, ApiError, money, setSession, toMinor } from './api';
 import type { Bill, Draft, Plan, Summary, Wallet } from './types';
 import c from './i18n/product.en.json';
 
-type Tab = 'overview' | 'plan' | 'emergency' | 'privacy';
+type Tab = 'overview' | 'plan' | 'emergency' | 'privacy' | 'nearby';
 const allScopes = ['transactions:read', 'balance:read', 'buffer:transfer', 'ai:parse'];
 const initialChoices = [false, false, false, false];
 
@@ -118,15 +119,16 @@ export default function App() {
 
   return <div className="app-shell">
     <header className="topbar"><a className="wordmark" href="#" onClick={e => e.preventDefault()}><span className="logo">i</span>{c.brand}</a><span className="demo-badge">{c.notice}</span></header>
-    {phase === 'start' ? <main className="landing"><p className="eyebrow">{c.eyebrow}</p><h1>{c.hero}</h1><p className="lead">{c.intro}</p><button className="primary" onClick={start} disabled={busy}>{busy ? c.busy : c.start} <span aria-hidden="true">↗</span></button><p className="muted">{c.startNote}</p><div className="landing-cards"><article><span className="step">01</span><h2>{c.reserve}</h2><p>{c.overviewIntro}</p></article><article><span className="step">02</span><h2>{c.suggestion}</h2><p>{c.suggestionNote}</p></article><article><span className="step">03</span><h2>{c.emergency}</h2><p>{c.emergencyIntro}</p></article></div><p className="scope">{c.scope}</p></main>
+    {phase === 'start' ? <main className="landing"><p className="eyebrow">{c.eyebrow}</p><h1>{c.hero}</h1><p className="lead">{c.intro}</p><button className="primary" onClick={start} disabled={busy}>{busy ? c.busy : c.start} <span aria-hidden="true">↗</span></button><p className="muted">{c.startNote}</p><p><a href="/nearby">Explore Ipon Nearby in the E-Wallet demo →</a></p><div className="landing-cards"><article><span className="step">01</span><h2>{c.reserve}</h2><p>{c.overviewIntro}</p></article><article><span className="step">02</span><h2>{c.suggestion}</h2><p>{c.suggestionNote}</p></article><article><span className="step">03</span><h2>{c.emergency}</h2><p>{c.emergencyIntro}</p></article></div><p className="scope">{c.scope}</p></main>
     : phase === 'consent' ? <main className="consent"><p className="eyebrow">{c.notice}</p><h1>{c.consentTitle}</h1><p className="lead">{c.consentIntro}</p>
       <ConsentBalances wallet={wallet} />
       {[['transactions', 'transactionsNote'], ['balances', 'balancesNote'], ['transfers', 'transfersNote'], ['ai', 'aiNote']].map(([title, description], i) => <label className="consent-option" key={title}><input type="checkbox" checked={choices[i]} onChange={e => setChoices(old => old.map((v, j) => j === i ? e.target.checked : v))} /><span><strong>{c[title as keyof typeof c]}</strong><small>{c[description as keyof typeof c]}</small></span></label>)}
       <label className="field">{c.expiry}<select value={days} onChange={e => setDays(Number(e.target.value))}>{[30, 90, 180].map(day => <option key={day} value={day}>{day} {c.days}</option>)}</select></label>
       <button className="primary" disabled={busy || !choices[0] || !choices[1]} onClick={grant}>{busy ? c.busy : c.continue}</button></main>
-    : <div className="workspace"><aside><nav aria-label="Main navigation">{(['overview', 'plan', 'emergency', 'privacy'] as Tab[]).map((item, i) => <button key={item} aria-current={tab === item ? 'page' : undefined} onClick={() => { setTab(item); setError(''); setNotice(''); }}><span className="nav-number">0{i + 1}</span>{c[item]}</button>)}</nav><div className="sidebar-note"><span className="status-dot" />{c.notice}<p>{c.scope}</p></div><button className="text-button" onClick={() => setConfirmAction('reset')}>{c.reset}</button></aside>
+    : <div className="workspace"><aside><nav aria-label="Main navigation">{(['overview', 'plan', 'nearby', 'emergency', 'privacy'] as Tab[]).map((item, i) => <button key={item} aria-current={tab === item ? 'page' : undefined} onClick={() => { setTab(item); setError(''); setNotice(''); }}><span className="nav-number">0{i + 1}</span>{item === 'nearby' ? 'Ipon Nearby' : c[item]}</button>)}</nav><div className="sidebar-note"><span className="status-dot" />{c.notice}<p>{c.scope}</p></div><button className="text-button" onClick={() => setConfirmAction('reset')}>{c.reset}</button></aside>
       <main className="dashboard">
-        <div className="page-heading"><div><p className="eyebrow">{c.brand} / {c[tab]}</p><h1>{tab === 'overview' ? c.greeting : tab === 'plan' ? c.planTitle : tab === 'emergency' ? c.emergencyTitle : c.privacyTitle}</h1></div><span className="date-chip">28 SEP 2026</span></div>
+        <div className="page-heading"><div><p className="eyebrow">{c.brand} / {tab === 'nearby' ? 'Ipon Nearby' : c[tab]}</p><h1>{tab === 'overview' ? c.greeting : tab === 'plan' ? c.planTitle : tab === 'emergency' ? c.emergencyTitle : tab === 'nearby' ? 'Your plan. Your neighborhood.' : c.privacyTitle}</h1></div><span className="date-chip">28 SEP 2026</span></div>
+        {tab === 'nearby' && <Nearby host={{request: api, openSavings: () => setTab('plan'), savings: data ? {contribution: data.amount_minor, essentials: data.reserve_minor, daily: data.plan.routine_daily_minor, asOf: data.as_of} : undefined}} />}
         {tab === 'overview' && (data ? <>
           <p className="lead compact">{c.overviewIntro}</p>
           <div className="overview-grid"><section className="buffer-card"><p>{c.buffer}</p><div className="big-money">{money(wallet.buffer_minor)}</div><p>{data.buffer_days?.toFixed(1) ?? '—'} {c.cover}</p><div className="buffer-track"><span style={{ width: `${Math.min(100, data.stage ? wallet.buffer_minor / data.stage.target_minor * 100 : 0)}%` }} /></div><div className="split"><span>{c.goal}</span><strong>{data.stage?.days ?? '—'} {c.days}</strong></div><div className="stage-ladder">{[7, 14, 30, 60, 90].map(day => <span className={(data.buffer_days ?? 0) >= day ? 'reached' : ''} key={day}>{day}d</span>)}</div><p className="fine">{c.etaUnavailable}</p></section>

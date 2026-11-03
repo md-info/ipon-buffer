@@ -29,3 +29,7 @@ Use the installed model; no additional dependency/download. Add deterministic re
 ## October 30, 2026 — Explain amounts using their actual basis
 
 Pass the available wallet balance explicitly to the explanation renderer so its proposed post-deposit balance cannot be confused with the reserve. Expose monthly essentials and exact configured scenario fractions in summary coverage metadata; render the fraction rather than hardcoding labels by card position. Compare scenarios against the buffer only and state that wallet money is excluded. These are presentation/metadata corrections; the existing financial rules and confirmation behavior are unchanged.
+
+## Nearby prototype integration
+
+Nearby is a host-configurable web component/React feature with no wallet movement capabilities. A separate E-Wallet shell demonstrates identity switching; it is not part of the reusable SDK. Host savings props display existing calculations without mutating plans. SDK output is built locally with npm run build:nearby. No new dependencies were introduced.

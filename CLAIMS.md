@@ -20,3 +20,7 @@ Never claim real customers, interviews, integrations, traction, guaranteed affor
 
 | Source checks clear certain unsupported AI suggestions | reports/ai_grounding_evaluation.md; test_grounding.py | Limited English patterns, not proof of semantic correctness |
 | 11/12 new exploratory examples matched intended reviewed behavior; 1 required a date | ai_grounding_live.json | Codex inspection; different review contract and sample from original 40; not independent accuracy |
+
+## Nearby claims — November 3
+
+Implemented prototype: local reports/photos, reactions, self-attested confirmations, capped noncash points, deletion, and modular web SDK. Evidence: backend/tests/test_nearby.py, live browser publisher/confirmer flow and SDK build. No verified real residents, real store coverage, cash rewards, GCash partnership, production SDK certification or measured savings/engagement uplift. Confirmation is a user assertion rather than proof. Original savings-engine regression suite passes.

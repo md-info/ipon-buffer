@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5173 --strictPort",
     "build": "tsc --noEmit && vite build",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build:nearby": "tsc --noEmit && vite build --config vite.nearby.config.ts"
   },
   "dependencies": {
     "react": "18.3.1",

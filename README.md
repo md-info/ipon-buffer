@@ -33,3 +33,9 @@ See PROGRESS.md, CLAIMS.md, docs/ARCHITECTURE.md and docs/PRIVACY_SECURITY.md. A
 
 
 Final handoff: see HANDOFF.md and submission/SUBMISSION_DRAFT.md. Applicant details intentionally remain blank. Public portal requirements were checked September 30; see docs/REQUIREMENTS.md. Development is closed for this prototype scope; applicant submission actions remain.
+
+## Ipon Nearby — feature branch
+
+Open http://127.0.0.1:5173/nearby for the E-Wallet integration demo, or use Ipon Nearby in the existing app navigation after starting the savings demo. Switch Mika/Sam to demonstrate community confirmations and reporter points. Use synthetic reports only. The savings recommendation engine remains available at /.
+
+For embedding, build the standalone module with npm run build:nearby from web. See docs/NEARBY_INTEGRATION.md for the mount API, host contract, business hypothesis and production limitations. This branch does not include a native APK or real e-wallet integration.

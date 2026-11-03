@@ -26,6 +26,7 @@ from app.engine.buffer import recommend
 from app.engine.explain import explain
 from app.engine.shock import shock_coverage
 from app.engine.types import Balances, EssentialPlan, IncomeSelection, Obligation
+from app.nearby import erase_nearby, install_nearby
 from app.sandbox.personas import AS_OF, golden_fixture
 
 Token = Annotated[str | None, Header(alias="X-Demo-Session")]
@@ -424,6 +425,7 @@ def create_app(database_url="sqlite:///ipon-demo.db", adapter=None):
     @app.delete("/api/v1/privacy/data")
     def erase(token: Token = None):
         with session(token, "privacy.delete") as (connection, uid, state):
+            erase_nearby(connection, uid)
             connection.execute(delete(snapshots).where(snapshots.c.user_id == uid))
             connection.execute(delete(idempotency).where(idempotency.c.user_id == uid))
             store.drafts.pop(uid, None)
@@ -493,4 +495,5 @@ def create_app(database_url="sqlite:///ipon-demo.db", adapter=None):
             store.drafts.pop(uid, None)
             return summary(state)
 
+    install_nearby(app, store, session)
     return app
