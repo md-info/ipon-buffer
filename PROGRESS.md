@@ -47,3 +47,9 @@ Restyled Nearby with a Nextdoor-inspired neighborhood feed: masthead search, sid
 ## Unified Buffer and community home — November 3
 
 Replaced split entry flows with a plain centered Log in button that starts a synthetic session. The post-login home displays clickable Buffer balance, wallet balance, savings setup/recommendation and community feed together. Savings setup retains explicit consent; editing/details/emergency/privacy expand on the home with Close details. Plan confirmation returns to the combined home. Both / and /nearby now enter the unified app. The login is a demo session action, not real account authentication. Six frontend tests, TypeScript and build pass; live browser verified one-button entry and simultaneous Buffer/feed display. Backend engine unchanged.
+
+## Cohesion and navigation pass — November 3
+
+Unified visible branding under Ipon Buffer; embedded feed keeps search without a second logo. Added explicit Back to home from consent and all detail views, Back to feed from posting, All finds from filtered feed, and Cancel changes for plan editing. Browser-back from details returns home. Leaving setup restores granted permissions, and canceling plan changes restores the saved plan. Scoped plan validation to plan inputs so community posting cannot block saving. Removed obsolete hidden sidebar. Updated AI and privacy guidance to match navigation and community deletion.
+
+Live browser reviewed login, combined home, permission setup, plan editor, cancel-to-home, emergency view, and privacy view. Six frontend tests, TypeScript, app build and standalone module build pass. Separate mobile/device and full photo-upload interaction passes were not performed in this navigation update. Savings engine and backend unchanged.
