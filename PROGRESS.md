@@ -135,3 +135,6 @@ Rewrote the presentation narration for spoken delivery: concrete examples, natur
 
 
 Expanded stakeholder narration with customer decision costs, partner responsibilities, campaign economics, operating costs, attribution and pilot criteria. Updated all ten PowerPoint note sections to match.
+
+
+Final editorial pass removed repetitive transitions and abstract phrasing while preserving business detail. Created a fresh Pixel 9 AVD (IponPitchPixel9, Android 15, emulator-5556), installed demo APK and captured four genuine views through Windows computer use. Added home, price detail, planning and merchant cashback screenshots to slides 2, 3, 4 and 7. Cropped emulator title/status strip only. Visually inspected all four changed slides and refreshed the clean home capture. New deck: submission/november-pitch/Ipon-Buffer-Stakeholder-Pitch-Android.pptx. Ten slides and narration consistency verified.
