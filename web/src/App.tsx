@@ -41,17 +41,17 @@ export default function App() {
   const refresh = async () => { setWallet(await api<Wallet>('/wallet')); if (choices[0] && choices[1]) accept(await api<Summary>('/summary')); };
   const start = () => perform(async () => {
     const response = await api<{ token: string; assistant_mode: string }>('/sandbox/start', 'POST');
-    setSession(response.token); setWallet(await api<Wallet>('/wallet')); setModelMode(response.assistant_mode); setPhase('consent');
+    setSession(response.token); setWallet(await api<Wallet>('/wallet')); setModelMode(response.assistant_mode); setPhase('app'); setTab('nearby');
   });
   const grant = () => perform(async () => {
     await api('/consents', 'POST', { scopes: allScopes.filter((_, i) => choices[i]), days });
-    accept(await api<Summary>('/summary')); setPhase('app'); setTab('plan');
+    accept(await api<Summary>('/summary')); setPhase('app'); setTab('nearby');
   });
   const save = () => perform(async () => {
     if (!plan) return;
     if (![...document.querySelectorAll('input')].every(input => input.reportValidity())) return;
     accept(await api<Summary>('/plan', 'PUT', { ...plan, confirmed: true }));
-    setDraft(null); setNotice(c.planSaved); setTab('overview');
+    setDraft(null); setNotice(c.planSaved); setTab('nearby');
   });
   const move = (operation: 'transfer' | 'withdraw' | 'pay-emergency') => perform(async () => {
     let value = operation === 'transfer' ? 0 : toMinor(amount);
@@ -102,7 +102,7 @@ export default function App() {
     const next = { ...plan, confirmed: true, obligations: [...plan.obligations, ...bills],
       next_expected_income: draft.proposal.expected_income_date ?? plan.next_expected_income };
     accept(await api<Summary>('/assistant/apply', 'POST', { draft_id: draft.draft_id, plan: next }));
-    setDraft(null); setText(''); setNotice(c.planSaved); setTab('overview');
+    setDraft(null); setText(''); setNotice(c.planSaved); setTab('nearby');
   });
   const editBill = (index: number, values: Partial<Bill>) => setPlan(old => old && ({ ...old, obligations: old.obligations.map((bill, i) => i === index ? { ...bill, ...values } : bill) }));
   const updateCandidate = (index: number, field: string, value: unknown) => setDraft(old => old && ({ ...old, proposal: { ...old.proposal, candidates: old.proposal.candidates.map((item, i) => i === index ? { ...item, [field]: value } : item) } }));
@@ -118,17 +118,17 @@ export default function App() {
   });
 
   return <div className="app-shell">
-    <header className="topbar"><a className="wordmark" href="#" onClick={e => e.preventDefault()}><span className="logo">i</span>{c.brand}</a><span className="demo-badge">{c.notice}</span></header>
-    {phase === 'start' ? <main className="landing"><p className="eyebrow">{c.eyebrow}</p><h1>{c.hero}</h1><p className="lead">{c.intro}</p><button className="primary" onClick={start} disabled={busy}>{busy ? c.busy : c.start} <span aria-hidden="true">↗</span></button><p className="muted">{c.startNote}</p><p><a href="/nearby">Explore Ipon Nearby in the E-Wallet demo →</a></p><div className="landing-cards"><article><span className="step">01</span><h2>{c.reserve}</h2><p>{c.overviewIntro}</p></article><article><span className="step">02</span><h2>{c.suggestion}</h2><p>{c.suggestionNote}</p></article><article><span className="step">03</span><h2>{c.emergency}</h2><p>{c.emergencyIntro}</p></article></div><p className="scope">{c.scope}</p></main>
+    {phase !== 'start' && <header className="topbar"><a className="wordmark" href="#" onClick={e=>{e.preventDefault();setTab('nearby');setPhase('app');}}><span className="logo">i</span>Ipon Buffer <small>+ Nearby</small></a><span className="demo-badge">Synthetic wallet demo</span></header>}
+    {phase === 'start' ? <main className="ipon-login"><button className="primary" onClick={start} disabled={busy} aria-label="Log in to synthetic demo">{busy ? 'Logging in…' : 'Log in'}</button></main>
     : phase === 'consent' ? <main className="consent"><p className="eyebrow">{c.notice}</p><h1>{c.consentTitle}</h1><p className="lead">{c.consentIntro}</p>
       <ConsentBalances wallet={wallet} />
       {[['transactions', 'transactionsNote'], ['balances', 'balancesNote'], ['transfers', 'transfersNote'], ['ai', 'aiNote']].map(([title, description], i) => <label className="consent-option" key={title}><input type="checkbox" checked={choices[i]} onChange={e => setChoices(old => old.map((v, j) => j === i ? e.target.checked : v))} /><span><strong>{c[title as keyof typeof c]}</strong><small>{c[description as keyof typeof c]}</small></span></label>)}
       <label className="field">{c.expiry}<select value={days} onChange={e => setDays(Number(e.target.value))}>{[30, 90, 180].map(day => <option key={day} value={day}>{day} {c.days}</option>)}</select></label>
       <button className="primary" disabled={busy || !choices[0] || !choices[1]} onClick={grant}>{busy ? c.busy : c.continue}</button></main>
-    : <div className="workspace"><aside><nav aria-label="Main navigation">{(['overview', 'plan', 'nearby', 'emergency', 'privacy'] as Tab[]).map((item, i) => <button key={item} aria-current={tab === item ? 'page' : undefined} onClick={() => { setTab(item); setError(''); setNotice(''); }}><span className="nav-number">0{i + 1}</span>{item === 'nearby' ? 'Ipon Nearby' : c[item]}</button>)}</nav><div className="sidebar-note"><span className="status-dot" />{c.notice}<p>{c.scope}</p></div><button className="text-button" onClick={() => setConfirmAction('reset')}>{c.reset}</button></aside>
+    : <div className="workspace ipon-unified"><aside><nav aria-label="Main navigation">{(['overview', 'plan', 'nearby', 'emergency', 'privacy'] as Tab[]).map((item, i) => <button key={item} aria-current={tab === item ? 'page' : undefined} onClick={() => { setTab(item); setError(''); setNotice(''); }}><span className="nav-number">0{i + 1}</span>{item === 'nearby' ? 'Ipon Nearby' : c[item]}</button>)}</nav><div className="sidebar-note"><span className="status-dot" />{c.notice}<p>{c.scope}</p></div><button className="text-button" onClick={() => setConfirmAction('reset')}>{c.reset}</button></aside>
       <main className="dashboard">
-        <div className="page-heading"><div><p className="eyebrow">{c.brand} / {tab === 'nearby' ? 'Ipon Nearby' : c[tab]}</p><h1>{tab === 'overview' ? c.greeting : tab === 'plan' ? c.planTitle : tab === 'emergency' ? c.emergencyTitle : tab === 'nearby' ? 'Your plan. Your neighborhood.' : c.privacyTitle}</h1></div><span className="date-chip">28 SEP 2026</span></div>
-        {tab === 'nearby' && <Nearby host={{request: api, openSavings: () => setTab('plan'), savings: data ? {contribution: data.amount_minor, essentials: data.reserve_minor, daily: data.plan.routine_daily_minor, asOf: data.as_of} : undefined}} />}
+        <section className="ipon-buffer-header" aria-label="Your emergency buffer"><div><p className="eyebrow">YOUR EMERGENCY BUFFER</p><button className="ipon-balance-link" onClick={()=>{if(data){setTab('overview');}else{setPhase('consent');}}}>{money(wallet.buffer_minor)} <span>↗</span></button><p>{data ? `${data.buffer_days?.toFixed(1) ?? '—'} days of planned essentials covered` : 'Start your plan. Make room for the unexpected.'}</p></div><div className="ipon-buffer-stat"><small>Everyday wallet</small><strong>{money(wallet.available_minor)}</strong></div><div className="ipon-buffer-stat"><small>Suggested contribution</small><strong>{data ? money(data.amount_minor) : 'Set up your plan'}</strong><small>{data ? 'Based on your reviewed expenses' : 'Choose permissions to calculate'}</small></div><div className="ipon-buffer-buttons"><button className="primary" onClick={()=>{if(data){setTab('plan');}else{setPhase('consent');}}}>{data ? 'Edit savings plan' : 'Start savings plan'}</button>{data && <button onClick={()=>setTab('overview')}>View buffer details</button>}<button onClick={()=>setTab('emergency')}>Emergency access</button><button onClick={()=>setTab('privacy')}>Permissions</button></div></section>
+        {tab !== 'nearby' && <div className="ipon-editor-heading"><h1>{tab === 'plan' ? c.planTitle : tab === 'overview' ? 'Your buffer details' : tab === 'emergency' ? c.emergencyTitle : c.privacyTitle}</h1><button onClick={()=>setTab('nearby')}>Close details ×</button></div>}
         {tab === 'overview' && (data ? <>
           <p className="lead compact">{c.overviewIntro}</p>
           <div className="overview-grid"><section className="buffer-card"><p>{c.buffer}</p><div className="big-money">{money(wallet.buffer_minor)}</div><p>{data.buffer_days?.toFixed(1) ?? '—'} {c.cover}</p><div className="buffer-track"><span style={{ width: `${Math.min(100, data.stage ? wallet.buffer_minor / data.stage.target_minor * 100 : 0)}%` }} /></div><div className="split"><span>{c.goal}</span><strong>{data.stage?.days ?? '—'} {c.days}</strong></div><div className="stage-ladder">{[7, 14, 30, 60, 90].map(day => <span className={(data.buffer_days ?? 0) >= day ? 'reached' : ''} key={day}>{day}d</span>)}</div><p className="fine">{c.etaUnavailable}</p></section>
@@ -157,6 +157,7 @@ export default function App() {
         {tab === 'emergency' && <><p className="lead compact">{c.emergencyIntro}</p><div className="two-col"><section className="buffer-card"><p>{c.buffer}</p><div className="big-money">{money(wallet.buffer_minor)}</div><p>{c.wallet}: {money(wallet.available_minor)}</p></section><section className="card"><label className="field">{c.amount}<input inputMode="decimal" value={amount} onChange={e => setAmount(e.target.value)} /></label><button className="primary" disabled={busy} onClick={() => move('withdraw')}>{c.withdraw}</button><p className="fine">{c.paymentNote}</p><button disabled={busy} onClick={() => move('pay-emergency')}>{c.pay}</button></section></div>{withdrawalMade && <section className="card"><h2>{c.refill}</h2>{refill ? <p><strong>{money(refill.weekly_minor)}</strong> {c.perWeek} · {refill.estimated_weeks} {c.weeks}</p> : <p>{c.refillPaused}</p>}<p className="fine">{c.refillNote}</p></section>}</>}
 
         {tab === 'privacy' && <><p className="lead compact">{c.privacyIntro}</p><section className="card"><h2>{c.consentTitle}</h2><div className="actions"><button onClick={() => setPhase('consent')}>{c.editConsent}</button><button disabled={busy} onClick={revoke}>{c.revoke}</button></div></section><section className="card"><h2>{c.audit}</h2><p className="fine">{c.auditNote}</p><button disabled={busy} onClick={() => perform(async () => setAudit(await api('/audit')))}>{c.audit}</button>{audit && <><p className={audit.verified ? 'success-text' : 'error-text'}>{audit.verified ? c.verified : c.auditFailed}</p><ul className="audit-list">{audit.entries.slice(-12).reverse().map((entry, i) => <li key={i}>{entry.action}</li>)}</ul></>}</section><section className="card"><h2>{c.delete}</h2><p>{c.deleteNote}</p><button className="danger" onClick={() => setConfirmAction('delete')}>{c.delete}</button></section></>}
+        <div className="ipon-feed-embedded"><Nearby host={{request: api, openSavings: () => {if(data){setTab('plan');}else{setPhase('consent');}}, savings: data ? {contribution: data.amount_minor, essentials: data.reserve_minor, daily: data.plan.routine_daily_minor, asOf: data.as_of} : undefined}} /></div>
         <footer>{c.footer}</footer>
       </main></div>}
     {error && <div className="toast error" role="alert">{error}<button aria-label="Dismiss error" onClick={() => setError('')}>×</button></div>}

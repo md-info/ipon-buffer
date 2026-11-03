@@ -4,12 +4,12 @@ import App, { ConsentBalances } from './App';
 import { checkHealth, toMinor } from './api';
 
 describe('foundation', () => {
-  it('shows the synthetic notice before starting a session', () => {
+  it('starts with one centered demo login action', () => {
     const html = renderToStaticMarkup(<App />);
-    expect(html).toContain('Ipon Buffer');
-    expect(html).toContain('Try the rider demo');
-    expect(html).toContain('SYNTHETIC DEMO');
-    expect(html).toContain('No signup or personal data');
+    expect(html).toContain('ipon-login');
+    expect(html).toContain('Log in to synthetic demo');
+    expect(html.match(/<button/g)).toHaveLength(1);
+    expect(html).not.toContain('landing-cards');
   });
   it('converts typed decimal amounts exactly into minor units', () => {
     expect(toMinor('0.29')).toBe(29);
