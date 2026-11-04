@@ -141,3 +141,8 @@ Final editorial pass removed repetitive transitions and abstract phrasing while 
 
 
 Added a dedicated title slide before the persona and a conclusion slide after the pilot. Final deck has 12 slides. Updated page numbers and standalone script numbering/timing, preserving the ten-minute target. Visually checked both new slides.
+
+
+## Visual stakeholder deck — November 3
+
+Redesigned all 12 slides around larger real Android detail views, existing credited photography and six consistent generated editorial illustrations covering comparison, community response, merchant campaigns, evaluation, integration and neighbourhood pilot. Kept slide text editable and source/disclosure notes. Rendered and visually inspected every slide. Exported submission/november-pitch/Ipon-Buffer-Visual-Pitch.pptx. Verified 12 slide/note XML sections. Approved standalone script unchanged, confirmed by SHA256 B5187C0D4BB88EE941FF5EEB9D231BF4B44281CD4F93716BF3C5852DD1337122.
