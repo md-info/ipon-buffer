@@ -7,16 +7,16 @@ import c from './i18n/product.en.json';
 
 type Tab = 'overview' | 'plan' | 'emergency' | 'privacy' | 'nearby' | 'rewards';
 const allScopes = ['transactions:read', 'balance:read', 'buffer:transfer', 'ai:parse'];
-const initialChoices = [false, false, false, false];
+const initialChoices = [true, true, true, true];
+const disabledChoices = [false, false, false, false];
 
 export default function App() {
-  const [phase, setPhase] = useState<'start' | 'consent' | 'app'>('start');
+  const [phase, setPhase] = useState<'start' | 'app'>('start');
   const [tab, setTab] = useState<Tab>('overview');
   const [data, setData] = useState<Summary | null>(null);
   const [wallet, setWallet] = useState<Wallet>({ available_minor: 200000, buffer_minor: 50000 });
   const [plan, setPlan] = useState<Plan | null>(null);
   const [choices, setChoices] = useState(initialChoices);
-  const [days, setDays] = useState(90);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
@@ -56,13 +56,19 @@ export default function App() {
     finally { operationRunning.current = false; setBusy(false); }
   };
   const refresh = async () => { setWallet(await api<Wallet>('/wallet')); if (choices[0] && choices[1]) accept(await api<Summary>('/summary')); };
+  const enableDemo = async () => {
+    await api('/consents', 'POST', { scopes: allScopes, days: 90 });
+    grantedChoices.current = [...initialChoices]; setChoices([...initialChoices]);
+    accept(await api<Summary>('/summary'));
+  };
   const start = () => perform(async () => {
     const response = await api<{ token: string; assistant_mode: string }>('/sandbox/start', 'POST');
-    setSession(response.token); setWallet(await api<Wallet>('/wallet')); setModelMode(response.assistant_mode); setPhase('app'); setTab('nearby');
+    setSession(response.token); setModelMode(response.assistant_mode);
+    await enableDemo(); setPhase('app'); setTab('nearby');
   });
-  const grant = () => perform(async () => {
-    await api('/consents', 'POST', { scopes: allScopes.filter((_, i) => choices[i]), days });
-    grantedChoices.current = [...choices]; accept(await api<Summary>('/summary')); setPhase('app'); setTab('plan');
+  const openPlan = () => perform(async () => {
+    if (!data) await enableDemo();
+    openView('plan');
   });
   const save = () => perform(async () => {
     if (!plan) return;
@@ -133,26 +139,22 @@ export default function App() {
   const editBill = (index: number, values: Partial<Bill>) => setPlan(old => old && ({ ...old, obligations: old.obligations.map((bill, i) => i === index ? { ...bill, ...values } : bill) }));
   const updateCandidate = (index: number, field: string, value: unknown) => setDraft(old => old && ({ ...old, proposal: { ...old.proposal, candidates: old.proposal.candidates.map((item, i) => i === index ? { ...item, [field]: value } : item) } }));
   const revoke = () => perform(async () => {
-    await api('/consents', 'DELETE'); grantedChoices.current = initialChoices; setChoices(initialChoices); setDraft(null); setData(null); setPlan(null); setRefill(null); setNotice(c.revoked);
+    await api('/consents', 'DELETE'); grantedChoices.current = disabledChoices; setChoices(disabledChoices); setDraft(null); setData(null); setPlan(null); setRefill(null); setNotice(c.revoked);
   });
   const destructive = () => perform(async () => {
     if (confirmAction === 'delete') { await api('/privacy/data', 'DELETE'); setSession(''); setPhase('start'); }
-    else { await api('/sandbox/reset', 'POST'); setPhase('consent'); }
-    grantedChoices.current = initialChoices; setChoices(initialChoices); setData(null); setPlan(null); setDraft(null); setAudit(null); setText(''); setRefill(null); setWithdrawalMade(false); setConfirmAction(null); retry.current = {};
+    else { await api('/sandbox/reset', 'POST'); }
+    grantedChoices.current = disabledChoices; setChoices(disabledChoices); setData(null); setPlan(null); setDraft(null); setAudit(null); setText(''); setRefill(null); setWithdrawalMade(false); setConfirmAction(null); retry.current = {};
     pendingDeposit.current = null;
     setWallet({ available_minor: 200000, buffer_minor: 50000 });
+    if (confirmAction !== 'delete') { await enableDemo(); setPhase('app'); setTab('nearby'); }
   });
 
   return <div className="app-shell">
     {phase === 'start' ? <main className="ipon-login"><div className="ipon-login-group"><div className="wordmark"><span className="logo">i</span>Ipon Buffer</div><button className="primary" onClick={start} disabled={busy} aria-label="Log in to synthetic demo">{busy ? 'Logging in…' : 'Log in'}</button></div></main>
-    : phase === 'consent' ? <main className="consent"><button className="ipon-back" onClick={goHome}>← Back to home</button><p className="eyebrow">{c.notice}</p><h1>{c.consentTitle}</h1><p className="lead">{c.consentIntro}</p>
-      <ConsentBalances wallet={wallet} />
-      {[['transactions', 'transactionsNote'], ['balances', 'balancesNote'], ['transfers', 'transfersNote'], ['ai', 'aiNote']].map(([title, description], i) => <label className="consent-option" key={title}><input type="checkbox" checked={choices[i]} onChange={e => setChoices(old => old.map((v, j) => j === i ? e.target.checked : v))} /><span><strong>{c[title as keyof typeof c]}</strong><small>{c[description as keyof typeof c]}</small></span></label>)}
-      <label className="field">{c.expiry}<select value={days} onChange={e => setDays(Number(e.target.value))}>{[30, 90, 180].map(day => <option key={day} value={day}>{day} {c.days}</option>)}</select></label>
-      <button className="primary" disabled={busy || !choices[0] || !choices[1]} onClick={grant}>{busy ? c.busy : c.continue}</button></main>
     : <div className="workspace ipon-unified">
       <main className="dashboard">
-        <section className="ipon-buffer-header" aria-label="Your emergency buffer"><div><p className="eyebrow">YOUR EMERGENCY BUFFER</p><button className="ipon-balance-link" onClick={()=>{if(data){openView('overview');}else{setPhase('consent');}}}>{money(wallet.buffer_minor)} <span>↗</span></button><p>{data ? `${data.buffer_days?.toFixed(1) ?? '—'} days of planned essentials covered` : 'Start your plan. Make room for the unexpected.'}</p></div><div className="ipon-buffer-stat"><small>Everyday wallet</small><strong>{money(wallet.available_minor)}</strong></div><div className="ipon-buffer-stat"><small>{data?.deposit_receipt_minor != null ? 'Deposited' : 'Suggested contribution'}</small><strong>{data ? money(data.deposit_receipt_minor ?? data.amount_minor) : 'Set up your plan'}</strong><small>{data ? (data.deposit_receipt_minor != null ? 'Added to your buffer' : 'Based on your reviewed expenses') : 'Choose permissions to calculate'}</small></div><div className="ipon-buffer-buttons"><button className="primary" onClick={()=>{if(data){openView('plan');}else{setPhase('consent');}}}>{data ? 'Edit savings plan' : 'Start savings plan'}</button>{data && <button onClick={()=>openView('overview')}>View buffer details</button>}<button onClick={()=>openView('emergency')}>Emergency access</button><button onClick={()=>openView('rewards')}>Rewards & partners</button><button onClick={()=>openView('privacy')}>Permissions</button></div></section>
+        <section className="ipon-buffer-header" aria-label="Your emergency buffer"><div><p className="eyebrow">YOUR EMERGENCY BUFFER</p><button className="ipon-balance-link" onClick={()=>{if(data){openView('overview');}else{openPlan();}}}>{money(wallet.buffer_minor)} <span>↗</span></button><p>{data ? `${data.buffer_days?.toFixed(1) ?? '—'} days of planned essentials covered` : 'Start your plan. Make room for the unexpected.'}</p></div><div className="ipon-buffer-stat"><small>Everyday wallet</small><strong>{money(wallet.available_minor)}</strong></div><div className="ipon-buffer-stat"><small>{data?.deposit_receipt_minor != null ? 'Deposited' : 'Suggested contribution'}</small><strong>{data ? money(data.deposit_receipt_minor ?? data.amount_minor) : 'Set up your plan'}</strong><small>{data ? (data.deposit_receipt_minor != null ? 'Added to your buffer' : 'Based on your reviewed expenses') : 'Review your expenses to calculate'}</small></div><div className="ipon-buffer-buttons"><button className="primary" disabled={busy} onClick={openPlan}>{data ? 'Edit savings plan' : 'Start savings plan'}</button>{data && <button onClick={()=>openView('overview')}>View buffer details</button>}<button onClick={()=>openView('emergency')}>Emergency access</button><button onClick={()=>openView('rewards')}>Rewards & partners</button><button onClick={()=>openView('privacy')}>Permissions</button></div></section>
         {tab !== 'nearby' && <div className="ipon-editor-heading"><h1>{tab === 'plan' ? c.planTitle : tab === 'overview' ? 'Your buffer details' : tab === 'emergency' ? c.emergencyTitle : tab === 'rewards' ? 'Rewards & partners' : c.privacyTitle}</h1><button onClick={goHome}>← Back to home</button></div>}
         {tab === 'overview' && (data ? <>
           <p className="lead compact">{c.overviewIntro}</p>
@@ -170,20 +172,20 @@ export default function App() {
               <span>{s.covered ? c.covered : c.notCovered}</span>
             </div>)}</div>
           </section>
-        </> : <section className="card"><p>{c.consentRequired}</p><button onClick={() => setPhase('consent')}>{c.editConsent}</button></section>)}
+        </> : <section className="card"><p>Enable demo features to use savings planning.</p><button disabled={busy} onClick={openPlan}>Enable demo features</button></section>)}
 
         {tab === 'plan' && (plan ? <div className="ipon-plan-fields"><p className="lead compact">{c.planIntro}</p><section className="assistant-card"><div><span className="ai-tag">AI</span><h2>{c.assistantTitle}</h2><p>{c.assistantIntro}</p></div><p className="fine">{modelMode === 'disabled' ? c.aiOff : c.aiOn}</p>{!choices[3] && <p className="fine">{c.aiConsentNeeded}</p>}
           <label className="field"><span className="sr-only">{c.assistantTitle}</span><textarea value={text} maxLength={2000} onChange={e => setText(e.target.value)} placeholder={c.assistantPlaceholder} /></label><div className="actions"><button className="primary" disabled={busy || !choices[3] || !text.trim()} onClick={parse}>{busy ? c.busy : c.parse}</button>{busy && <button onClick={discard}>{c.cancel}</button>}</div>
           {draft && <div className="draft"><h3>{c.review}</h3><p>{c.reviewNote}</p><p>{draft.proposal.clarification}</p>{draft.proposal.candidates.map((item, index) => <div className="bill" key={index}><p className="fine">{c.source}: “{item.source_excerpt}”</p><div className="form-grid"><label className="field">{c.label}<input value={item.label} onChange={e => updateCandidate(index, 'label', e.target.value)} /></label><label className="field">{c.amount}<input inputMode="decimal" value={item.amount ?? ''} onChange={e => updateCandidate(index, 'amount', e.target.value)} /></label><label className="field">{c.due}<input type="date" value={item.due_date ?? ''} onChange={e => updateCandidate(index, 'due_date', e.target.value)} /></label><label className="field">{c.recurrence}<select value={item.recurrence} onChange={e => updateCandidate(index, 'recurrence', e.target.value)}><option value="unknown">{c.select}</option><option value="one_off">{c.once}</option><option value="monthly">{c.monthly}</option></select></label><label className="field">{c.included}<select value={item.included_in_daily === null ? '' : String(item.included_in_daily)} onChange={e => updateCandidate(index, 'included_in_daily', e.target.value === '' ? null : e.target.value === 'true')}><option value="">{c.select}</option><option value="true">{c.yes}</option><option value="false">{c.no}</option></select></label></div></div>)}{draft.proposal.expected_income_date && <label className="field">{c.incomeEstimate}<input type="date" value={draft.proposal.expected_income_date} onChange={e => setDraft({ ...draft, proposal: { ...draft.proposal, expected_income_date: e.target.value } })} /></label>}<div className="actions"><button className="primary" disabled={busy || draft.proposal.status === 'unsupported' || draft.proposal.candidates.some(item => !item.amount || !item.due_date || item.recurrence === 'unknown' || item.included_in_daily === null) || (!draft.proposal.candidates.length && !draft.proposal.expected_income_date)} onClick={applyDraft}>{c.applyDraft}</button><button disabled={busy} onClick={discard}>{c.discard}</button></div></div>}
         </section><section className="card"><div className="form-grid"><label className="field">{c.daily}<MoneyInput key={`daily-${plan.version}`} value={plan.routine_daily_minor} onValue={value => setPlan({ ...plan, routine_daily_minor: value })} /></label><label className="field">{c.nextIncome}<input type="date" value={plan.next_expected_income} onChange={e => setPlan({ ...plan, next_expected_income: e.target.value })} /></label></div><div className="split"><h2>{c.bills}</h2><button onClick={() => setPlan({ ...plan, obligations: [...plan.obligations, { id: crypto.randomUUID(), label: '', amount_minor: 0, due_date: '2026-09-29', recurrence: 'one_off', included_in_daily: false, paid: false }] })}>{c.addBill}</button></div>
           {plan.obligations.map((bill, index) => <div className="bill" key={bill.id}><div className="form-grid"><label className="field">{c.label}<input value={bill.label} onChange={e => editBill(index, { label: e.target.value })} /></label><label className="field">{c.amount}<MoneyInput key={`${bill.id}-${plan.version}`} value={bill.amount_minor} onValue={value => editBill(index, { amount_minor: value })} /></label><label className="field">{c.due}<input type="date" value={bill.due_date} onChange={e => editBill(index, { due_date: e.target.value })} /></label><label className="field">{c.recurrence}<select value={bill.recurrence} onChange={e => editBill(index, { recurrence: e.target.value as Bill['recurrence'] })}><option value="one_off">{c.once}</option><option value="monthly">{c.monthly}</option></select></label></div><div className="bill-options"><label><input type="checkbox" checked={bill.included_in_daily} onChange={e => editBill(index, { included_in_daily: e.target.checked })} /> {c.included}</label><label><input type="checkbox" checked={bill.paid} onChange={e => editBill(index, { paid: e.target.checked })} /> {c.paid}</label><button className="text-button" onClick={() => setPlan({ ...plan, obligations: plan.obligations.filter((_, i) => i !== index) })}>{c.remove}</button></div></div>)}
-          <button className="primary" disabled={busy} onClick={save}>{busy ? c.busy : c.confirmPlan}</button><button className="ipon-cancel" onClick={goHome}>Cancel changes</button></section></div> : <section className="card"><p>{c.consentRequired}</p><button onClick={() => setPhase('consent')}>{c.editConsent}</button></section>)}
+          <button className="primary" disabled={busy} onClick={save}>{busy ? c.busy : c.confirmPlan}</button><button className="ipon-cancel" onClick={goHome}>Cancel changes</button></section></div> : <section className="card"><p>Enable demo features to use savings planning.</p><button disabled={busy} onClick={openPlan}>Enable demo features</button></section>)}
 
         {tab === 'emergency' && <><p className="lead compact">{c.emergencyIntro}</p><div className="two-col"><section className="buffer-card"><p>{c.buffer}</p><div className="big-money">{money(wallet.buffer_minor)}</div><p>{c.wallet}: {money(wallet.available_minor)}</p></section><section className="card"><label className="field">{c.amount}<input inputMode="decimal" value={amount} onChange={e => setAmount(e.target.value)} /></label><button className="primary" disabled={busy} onClick={() => move('withdraw')}>{c.withdraw}</button><p className="fine">{c.paymentNote}</p><button disabled={busy} onClick={() => move('pay-emergency')}>{c.pay}</button></section></div>{withdrawalMade && <section className="card"><h2>{c.refill}</h2>{refill ? <p><strong>{money(refill.weekly_minor)}</strong> {c.perWeek} · {refill.estimated_weeks} {c.weeks}</p> : <p>{c.refillPaused}</p>}<p className="fine">{c.refillNote}</p></section>}</>}
 
         {tab === 'rewards' && <Rewards onChanged={refresh} />}
-        {tab === 'privacy' && <><p className="lead compact">{c.privacyIntro}</p><section className="card"><h2>{c.consentTitle}</h2><div className="actions"><button onClick={() => setPhase('consent')}>{c.editConsent}</button><button disabled={busy} onClick={revoke}>{c.revoke}</button></div></section><section className="card"><h2>{c.audit}</h2><p className="fine">{c.auditNote}</p><button disabled={busy} onClick={() => perform(async () => setAudit(await api('/audit')))}>{c.audit}</button>{audit && <><p className={audit.verified ? 'success-text' : 'error-text'}>{audit.verified ? c.verified : c.auditFailed}</p><ul className="audit-list">{audit.entries.slice(-12).reverse().map((entry, i) => <li key={i}>{entry.action}</li>)}</ul></>}</section><section className="card"><h2>{c.delete}</h2><p>{c.deleteNote}</p><button className="danger" onClick={() => setConfirmAction('delete')}>{c.delete}</button></section></>}
-        <div className="ipon-feed-embedded"><Nearby embedded host={{request: api, openSavings: () => {if(data){openView('plan');}else{setPhase('consent');}}, savings: data ? {contribution: data.deposit_receipt_minor != null ? 0 : data.amount_minor, essentials: data.reserve_minor, daily: data.plan.routine_daily_minor, asOf: data.as_of} : undefined}} /></div>
+        {tab === 'privacy' && <><p className="lead compact">{c.privacyIntro}</p><section className="card"><h2>{c.consentTitle}</h2><div className="actions"><button disabled={busy} onClick={openPlan}>Enable demo features</button><button disabled={busy} onClick={revoke}>{c.revoke}</button></div></section><section className="card"><h2>{c.audit}</h2><p className="fine">{c.auditNote}</p><button disabled={busy} onClick={() => perform(async () => setAudit(await api('/audit')))}>{c.audit}</button>{audit && <><p className={audit.verified ? 'success-text' : 'error-text'}>{audit.verified ? c.verified : c.auditFailed}</p><ul className="audit-list">{audit.entries.slice(-12).reverse().map((entry, i) => <li key={i}>{entry.action}</li>)}</ul></>}</section><section className="card"><h2>{c.delete}</h2><p>{c.deleteNote}</p><button className="danger" onClick={() => setConfirmAction('delete')}>{c.delete}</button></section></>}
+        <div className="ipon-feed-embedded"><Nearby embedded host={{request: api, openSavings: () => {if(data){openView('plan');}else{openPlan();}}, savings: data ? {contribution: data.deposit_receipt_minor != null ? 0 : data.amount_minor, essentials: data.reserve_minor, daily: data.plan.routine_daily_minor, asOf: data.as_of} : undefined}} /></div>
         <footer>{c.footer}</footer>
       </main></div>}
     {error && <div className="toast error" role="alert">{error}<button aria-label="Dismiss error" onClick={() => setError('')}>×</button></div>}

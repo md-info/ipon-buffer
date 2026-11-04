@@ -146,3 +146,8 @@ Added a dedicated title slide before the persona and a conclusion slide after th
 ## Visual stakeholder deck — November 3
 
 Redesigned all 12 slides around larger real Android detail views, existing credited photography and six consistent generated editorial illustrations covering comparison, community response, merchant campaigns, evaluation, integration and neighbourhood pilot. Kept slide text editable and source/disclosure notes. Rendered and visually inspected every slide. Exported submission/november-pitch/Ipon-Buffer-Visual-Pitch.pptx. Verified 12 slide/note XML sections. Approved standalone script unchanged, confirmed by SHA256 B5187C0D4BB88EE941FF5EEB9D231BF4B44281CD4F93716BF3C5852DD1337122.
+
+
+## Direct demo login — November 3
+
+At the user's request, removed the checkbox consent setup screen. Login and sandbox reset now enable all four synthetic-demo scopes for 90 days, load summary and open the feed. Planning opens directly. Revocation and emergency access remain available; re-enabling demo features opens planning directly. Plan confirmation, AI review and deposit confirmation remain explicit. Browser verified fresh login reaches the feed and Edit savings plan reaches manual/AI planning without the removed screen. TypeScript, six frontend tests and production build passed. No native APK change needed because it loads the local web UI.

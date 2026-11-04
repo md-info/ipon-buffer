@@ -33,3 +33,6 @@ Pass the available wallet balance explicitly to the explanation renderer so its 
 ## Nearby prototype integration
 
 Nearby is a host-configurable web component/React feature with no wallet movement capabilities. A separate E-Wallet shell demonstrates identity switching; it is not part of the reusable SDK. Host savings props display existing calculations without mutating plans. SDK output is built locally with npm run build:nearby. No new dependencies were introduced.
+
+
+November 3: User explicitly requested removing the demo consent screen and defaulting all options on. Apply that preference to synthetic sandbox startup/reset only. Backend scope enforcement, revocation, AI draft review and per-deposit confirmation remain in place. This changes demo onboarding and does not constitute a production consent design.
