@@ -3,7 +3,11 @@
 November 4, 2026
 Ten-minute target. Approximately 150–160 words per minute, including short transitions. Rehearse to adjust pacing.
 
-## 1. Mika knows her budget. She does not know local prices. (0:00–1:00)
+## 1. Title (0:00–0:10)
+
+Ipon Buffer brings local price sharing and emergency savings into the e-wallet customers already use.
+
+## 2. Mika knows her budget. She does not know local prices. (0:10–1:07)
 
 Consider Mika, a fictional customer with two thousand pesos in her everyday wallet. She needs to cover groceries and household expenses, while gradually building an emergency fund. She understands the importance of saving. Her immediate challenge is knowing where she can reduce spending without giving up essentials.
 
@@ -13,7 +17,7 @@ Even after finding a better price, Mika faces another decision: how much can she
 
 Ipon Buffer addresses these connected decisions. It brings community price information into the same experience as a reviewed savings plan. That puts saving alongside the purchases customers already have to make.
 
-## 2. Ipon Buffer (1:00–2:00)
+## 3. Ipon Buffer (1:07–2:04)
 
 Ipon Buffer is a community price-sharing and emergency-savings feature designed to operate within an existing e-wallet.
 
@@ -23,7 +27,7 @@ For a wallet operator, the opportunity is to extend the app's role in everyday f
 
 The service would use the wallet's existing customer and merchant relationships. Commercially, Ipon Buffer would be offered through software licensing, integration services, and potentially merchant-funded campaigns. For the customer, the purpose is simple: build an emergency fund while keeping everyday needs covered.
 
-## 3. Price reports customers can check (2:00–3:00)
+## 4. Price reports customers can check (2:04–3:01)
 
 The customer journey begins with a single screen. A compact banner shows the emergency buffer, followed by a feed of local price reports. Each report identifies the product, quantity, store and observed price. Those details matter because an apparently cheaper product may simply come in a smaller pack.
 
@@ -33,7 +37,7 @@ The savings workflow then asks the customer to review their expenses. The engine
 
 The prototype demonstrates this with synthetic balances. Community reports inform shopping decisions, while changes to the financial plan and deposits require the customer's approval.
 
-## 4. AI helps customers describe expenses (3:00–4:00)
+## 5. AI helps customers describe expenses (3:01–3:58)
 
 AI supports the planning experience by reducing the effort required to describe expenses. A customer can explain an upcoming payment in ordinary language, and the model proposes details for the plan. The customer checks those details before accepting them.
 
@@ -43,7 +47,7 @@ The financial calculation runs separately. Rules calculate the contribution usin
 
 For a wallet partner, the responsibilities are clear: language assistance helps customers complete the plan, and financial rules govern the recommendation. The current demonstration uses a local model on the computer, with manual planning available as well. The benefit we intend to test is easier plan completion without reducing customer control.
 
-## 5. A focused combination (4:00–5:00)
+## 6. A focused combination (3:58–4:55)
 
 Our opportunity is to help with a decision customers make before they pay. Community price reporting is established in products such as GasBuddy. Venmo also combines social recommendations with commercial offers and cashback. These are useful references for understanding customer expectations.
 
@@ -53,7 +57,7 @@ The Venmo comparison captures one part of that distinction: Venmo makes payments
 
 Whether that is a better experience has to be tested. A pilot should establish whether this combination produces useful repeat visits and sustained buffer growth. Local relevance and reliable contributions could become an advantage over time, but the prototype does not yet establish a defensible network or superior performance.
 
-## 6. A useful action earns a social response (5:00–6:00)
+## 7. A useful action earns a social response (4:55–5:52)
 
 The engagement mechanism starts with a recurring customer need: buying essentials. That gives the feed a practical reason to exist before any rewards are introduced.
 
@@ -63,7 +67,7 @@ This follows the motivation, ability and prompt framework described by BJ Fogg. 
 
 We want customers to keep sharing information that others can use. Rewards therefore need to favour information quality rather than posting volume or additional spending. In a pilot, we would examine whether recognition improves the supply of accurate reports and whether customers continue participating after the initial novelty wears off. That is the test of a sustainable community.
 
-## 7. Revenue within the wallet business (6:00–7:00)
+## 8. Revenue within the wallet business (5:52–6:49)
 
 We would charge for the software and for merchant campaign services. A wallet operator could pay a licence fee for the software, with integration and ongoing support priced according to the deployment. Merchant-funded campaigns could provide an additional service revenue stream.
 
@@ -73,7 +77,7 @@ The prototype simulates purchases, campaign budgets and cashback transfers into 
 
 Referrals to suitable savings or investment products could be considered separately. Interest income is dependent on the partner's product arrangements. The initial business case should therefore stand on licensing and campaign economics, rather than assumed returns from customer balances.
 
-## 8. The partner buys measurable outcomes (7:00–8:00)
+## 9. The partner buys measurable outcomes (6:49–7:46)
 
 For a wallet partner, the question is whether the feature creates enough additional value to justify its cost and operational complexity.
 
@@ -85,7 +89,7 @@ The pilot should also track operating costs, including report moderation, custom
 
 The investment decision would depend on whether the resulting customer and merchant benefits exceed those costs. Those findings would determine whether the partner renews the service or expands it.
 
-## 9. A feature on top of the wallet (8:00–9:00)
+## 10. A feature on top of the wallet (7:46–8:43)
 
 Ipon Buffer is intended to sit within an existing wallet and its business structure. GCash and Maya illustrate the type of prospective partner; neither is currently involved.
 
@@ -95,7 +99,7 @@ The implementation currently includes a reusable React module, backend APIs and 
 
 Commercially, this is a software and integration offering. Customer discovery would happen within the partner's existing app experience, supported by its merchant relationships. Adoption still has to be earned through usefulness, but customers would not need to establish another wallet relationship to try the feature.
 
-## 10. A neighbourhood pilot inside one wallet (9:00–10:00)
+## 11. A neighbourhood pilot inside one wallet (8:43–9:40)
 
 The proposed next step is a limited pilot with one wallet partner, one neighbourhood and a manageable group of merchants.
 
@@ -104,6 +108,10 @@ A narrow launch is important because local information needs sufficient coverage
 Before launch, we would agree on what would justify expansion: report quality, repeat useful visits, customer buffer outcomes and campaign economics. We would also define how inaccurate reports and merchant disputes are handled.
 
 I am looking for a wallet partner willing to run that pilot. The offer is to help customers understand their local market, recognise useful community contributions, and make informed emergency-savings decisions within the wallet they already use. We would use the pilot results to decide what to improve and whether to expand.
+
+## 12. Conclusion (9:40–10:00)
+
+Ipon Buffer gives wallet customers useful local information and a clearer savings decision. The next step is a neighbourhood pilot with a wallet partner to test customer value and commercial viability.
 
 ## Sources
 

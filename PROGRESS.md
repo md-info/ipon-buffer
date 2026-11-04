@@ -138,3 +138,6 @@ Expanded stakeholder narration with customer decision costs, partner responsibil
 
 
 Final editorial pass removed repetitive transitions and abstract phrasing while preserving business detail. Created a fresh Pixel 9 AVD (IponPitchPixel9, Android 15, emulator-5556), installed demo APK and captured four genuine views through Windows computer use. Added home, price detail, planning and merchant cashback screenshots to slides 2, 3, 4 and 7. Cropped emulator title/status strip only. Visually inspected all four changed slides and refreshed the clean home capture. New deck: submission/november-pitch/Ipon-Buffer-Stakeholder-Pitch-Android.pptx. Ten slides and narration consistency verified.
+
+
+Added a dedicated title slide before the persona and a conclusion slide after the pilot. Final deck has 12 slides. Updated page numbers and standalone script numbering/timing, preserving the ten-minute target. Visually checked both new slides.
