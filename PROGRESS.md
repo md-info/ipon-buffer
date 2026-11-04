@@ -158,3 +158,8 @@ At the user's request, removed the checkbox consent setup screen. Login and sand
 Prepared all current feature commits, presentation assets, transparent phone mockups and development-signed APK for the existing public md-info/ipon-buffer repository. Added proprietary LICENSE and copyright notice in the submitted applicant's name, Michel Deosaran (md-info), with third-party/generated-material carve-outs and evaluation-only permission. Updated README, native integration/Android docs and package metadata. Full check passed: 158 backend and six frontend tests, Ruff, TypeScript and Vite. Credential-pattern scan found no flagged source files. Runtime databases, model weights, SDK tools, .env files and signing keys remain excluded.
 
 Authenticated BuilderBase check confirmed the existing submission links to this repository, but is Submitted / submissions closed with no edit controls. Form attachment fields show Not added yet. No portal text or files were changed. Saved an updated local submission description and terms/requirements observations. The current 12-slide stakeholder deck remains distinct from the historical ten-slide challenge PDF.
+
+
+## Narrow portrait feed cards — November 3
+
+Capped feed cards at 320px and the two-column feed at 654px. Feed images use a 4:5 portrait aspect ratio, scoped to cards so full post pages and upload previews are unaffected. Retained independent columns and responsive shrinking on narrow screens. Browser measurement verified 320px cards and approximately 318x398px photos on desktop. TypeScript and both production/module builds passed.

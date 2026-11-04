@@ -27,3 +27,9 @@
 
 /* Independent columns remove gaps below shorter cards. */
 .nearby .nearby-feed{display:block;column-count:2;column-gap:14px}.nearby .nearby-report{display:inline-block;vertical-align:top;width:100%;break-inside:avoid;margin:0 0 14px}.nearby .nearby-empty{column-span:all}.nearby .nearby-feed-tabs{margin-top:0}
+
+/* Narrow portrait cards; retain two independent feed columns. */
+.nearby .nearby-center{width:100%;max-width:654px}
+.nearby .nearby-feed{width:100%;max-width:654px}
+.nearby .nearby-feed .nearby-report{max-width:320px}
+.nearby .nearby-feed .nearby-post-photo .nearby-photo{height:auto;aspect-ratio:4/5;max-height:none;object-fit:cover}
