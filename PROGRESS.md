@@ -151,3 +151,10 @@ Redesigned all 12 slides around larger real Android detail views, existing credi
 ## Direct demo login — November 3
 
 At the user's request, removed the checkbox consent setup screen. Login and sandbox reset now enable all four synthetic-demo scopes for 90 days, load summary and open the feed. Planning opens directly. Revocation and emergency access remain available; re-enabling demo features opens planning directly. Plan confirmation, AI review and deposit confirmation remain explicit. Browser verified fresh login reaches the feed and Edit savings plan reaches manual/AI planning without the removed screen. TypeScript, six frontend tests and production build passed. No native APK change needed because it loads the local web UI.
+
+
+## Repository publication and ownership — November 3
+
+Prepared all current feature commits, presentation assets, transparent phone mockups and development-signed APK for the existing public md-info/ipon-buffer repository. Added proprietary LICENSE and copyright notice in the submitted applicant's name, Michel Deosaran (md-info), with third-party/generated-material carve-outs and evaluation-only permission. Updated README, native integration/Android docs and package metadata. Full check passed: 158 backend and six frontend tests, Ruff, TypeScript and Vite. Credential-pattern scan found no flagged source files. Runtime databases, model weights, SDK tools, .env files and signing keys remain excluded.
+
+Authenticated BuilderBase check confirmed the existing submission links to this repository, but is Submitted / submissions closed with no edit controls. Form attachment fields show Not added yet. No portal text or files were changed. Saved an updated local submission description and terms/requirements observations. The current 12-slide stakeholder deck remains distinct from the historical ten-slide challenge PDF.

@@ -9,3 +9,8 @@ Revocation clears derived snapshots and pending drafts, blocks planning/deposits
 Audit entries chain canonical JSON with SHA-256. Altering an entry is detected by verification. A database administrator can rewrite the complete chain, so this is not tamper-proof, externally anchored, or independently audited. Only successful actions are currently logged; rejected requests are not a complete security event trail.
 
 Threats tested include stale/replayed deposits, concurrent confirmations, altered idempotency payloads, cross-session drafts, expiry, revocation during inference, cancelled drafts, unavailable model and invalid amounts. Synthetic fixtures test boundaries, not LLM resistance or security certification. Remaining work: production authentication, authorisation threat model, external audit anchors, TLS deployment, retention enforcement, session cleanup, abuse controls, backups, penetration testing and partner reconciliation. Regulatory and consumer-protection assessment is future expert review, not a compliance finding.
+
+
+## Current synthetic demo onboarding (November 3, 2026)
+
+At the owner's explicit request, demo login and reset enable the four sandbox scopes for 90 days without a separate checkbox screen. This is a presentation shortcut for synthetic data, not a production consent design. Backend scope checks and revocation remain. AI plan changes and each deposit still require confirmation; no real wallet permissions or funds are involved. A real partner deployment needs its own authorization, consent and privacy design.

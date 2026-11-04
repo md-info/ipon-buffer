@@ -1,6 +1,6 @@
 # Ipon Nearby integration
 
-This branch supplies a reusable React feature, a mount/update/unmount SDK, a standalone E-Wallet demonstration at /nearby, and a persistent SQLite demo API. It preserves the existing Ipon Buffer savings recommendation engine. No GCash integration, native Android SDK, APK or production authentication is claimed.
+This branch supplies a reusable React feature, a mount/update/unmount SDK, a unified Ipon Buffer demonstration at / and /nearby, and a persistent SQLite demo API. It preserves the existing Ipon Buffer savings recommendation engine. An Android WebView demonstration APK is included separately. No GCash integration, native partner SDK or production authentication is claimed.
 
 ## Build and embed
 
@@ -31,11 +31,11 @@ Helpful is appreciation; confirmed is an independent self-attested observation, 
 
 ## Native wallet integration
 
-A partner Android team can host the web module inside its approved WebView or adapt the React view. This repository does not contain an APK or AAR. Native identity bridging, origins/navigation restrictions, camera/photo permissions and release signing require the partner's implementation and review. No arbitrary JavaScript wallet bridge or transfer capability is exposed by this module.
+A partner Android team can host the web module inside its approved WebView or adapt the React view. This repository includes a development demo APK, not a partner SDK or AAR. Native identity bridging, origins/navigation restrictions, camera/photo permissions and release signing require the partner's implementation and review. No arbitrary JavaScript wallet bridge or transfer capability is exposed by this module.
 
 ## Demonstration versus production
 
-/nearby lets a reviewer switch between Mika and Sam synthetic sessions. This deliberately permits identity recreation and is not fraud-resistant. Neighborhoods are fixed demo areas; no GPS or verified resident data is collected. Images are resized/re-encoded client-side, but backend signature checks are not full malware/content inspection. Production needs decoded image verification, object storage, moderation/appeals, abuse and rate controls, resident/store validation, tenant-specific catalogs, reward funding and anti-collusion controls. Do not connect real users or funds to the demo API.
+The app starts synthetic sessions at login. Session recreation remains possible and is not fraud-resistant. Neighborhoods are fixed demo areas; no GPS or verified resident data is collected. Images are resized/re-encoded client-side, but backend signature checks are not full malware/content inspection. Production needs decoded image verification, object storage, moderation/appeals, abuse and rate controls, resident/store validation, tenant-specific catalogs, reward funding and anti-collusion controls. Do not connect real users or funds to the demo API.
 
 ## Product and commercial hypothesis
 

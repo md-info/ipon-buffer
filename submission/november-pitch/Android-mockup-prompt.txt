@@ -1,0 +1,1 @@
+Built-in ImageGen edit. Prompt: Remove only the background outside the Android phone and replace it with genuine alpha-channel transparency. Preserve the entire phone, bezel, camera, app screen, text, photographs and internal colors. Keep white screen areas opaque. Remove the external ground shadow. Do not add a checkerboard or replacement background.

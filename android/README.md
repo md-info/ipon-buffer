@@ -1,6 +1,6 @@
 # Ipon Buffer Android demo
 
-The signed installable APK is build/Ipon-Buffer-demo.apk. Requires Android 8.0+ and a current Android System WebView. It packages the app as a native WebView shell; the web UI, API, database and local AI continue running on the development computer. It is not a standalone offline app, a production release, or a GCash SDK/AAR. No public hosting is required for this USB-connected demo.
+The included development-signed APK is Ipon-Buffer-demo.apk. Rebuilding writes build/Ipon-Buffer-demo.apk. Requires Android 8.0+ and a current Android System WebView. It packages the app as a native WebView shell; the web UI, API, database and local AI continue running on the development computer. It is not a standalone offline app, a production release, or a GCash SDK/AAR. No public hosting is required for this USB-connected demo.
 
 ## Run on your phone
 
@@ -9,7 +9,7 @@ The signed installable APK is build/Ipon-Buffer-demo.apk. Requires Android 8.0+ 
 3. From the project root run `powershell -ExecutionPolicy Bypass -File android/connect.ps1`.
 4. The script forwards phone port 5173 to the computer, installs the APK and opens Ipon Buffer. Press Log in to start the synthetic demo.
 
-USB port forwarding is required again after disconnect/restart. For an emulator, adb reverse works the same way. connect.ps1 expects exactly one authorized device. No physical device was connected at build time; installation, photo picker, keyboard/insets and runtime behavior still require device validation.
+USB port forwarding is required again after disconnect/restart. For an emulator, adb reverse works the same way. connect.ps1 expects exactly one authorized device. Installation, launch, login and safe system-bar bounds have been checked on Android 15 emulators, including a fresh Pixel 9 profile. Physical-device, photo-picker and broader keyboard/device coverage still require validation.
 
 ## Build
 
